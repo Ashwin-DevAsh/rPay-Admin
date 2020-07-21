@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Rec-Wallet-Admin"
+    }
+  },
+  "defaultProject": "Rec-Wallet-Admin",
+  "cli": {
+    "analytics": false
+  }
 }
