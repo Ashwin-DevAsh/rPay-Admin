@@ -23,7 +23,6 @@ $dimBackground: #f7f7f7;
   grid-template-columns: 45% 55%;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-
   border-radius: 2px;
 }
 
@@ -42,6 +41,10 @@ $dimBackground: #f7f7f7;
 
   div {
     width: 90%;
+  }
+
+  h2 {
+    font-weight: 500;
   }
 }
 
@@ -71,9 +74,9 @@ $dimBackground: #f7f7f7;
 .text-fields {
   height: 100%;
   width: 100%;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
-  margin-top: 100px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   .input {
@@ -84,9 +87,10 @@ $dimBackground: #f7f7f7;
     border: none;
     width: 100%;
     background-color: rgba(3, 90, 166, 0.05);
-    // margin: 20px 0;
+    transition: all 0.5s ease;
     height: 50px;
     padding: 0 20px;
+    margin-top: 10px;
     outline-width: 0.01;
     outline-color: rgba(3, 90, 166, 0.1);
   }
@@ -100,26 +104,26 @@ $dimBackground: #f7f7f7;
   }
 }
 
-button {
-  border: none;
-  background: $primarycolorGradient;
-  color: white;
-  border-radius: 2px;
-  padding: 5px 30px;
-  outline-width: 0;
-  transition: all 0.5s ease;
-}
-
-button:hover {
-  background-color: $primarycolor;
-}
-
 .footer {
   display: flex;
   width: 70%;
   justify-content: space-between;
   align-items: center;
   margin-top: 50px;
+
+  .signin {
+    border: none;
+    background: $primarycolorGradient;
+    color: white;
+    border-radius: 2px;
+    padding: 5px 30px;
+    outline-width: 0;
+    transition: all 0.5s ease;
+  }
+
+  .signin:hover {
+    background-color: $primarycolor;
+  }
 }
 
 .image {
@@ -150,6 +154,24 @@ button:hover {
   }
 }
 
+.spiner {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 2;
+  top: 0px;
+  justify-content: center;
+}
+
+.text-fields {
+  .showError {
+    background-color: rgba(250, 173, 173, 0.5);
+  }
+}
+
 .signup {
   display: flex;
   position: absolute;
@@ -160,6 +182,33 @@ button:hover {
   align-self: center;
   a {
     color: black;
+  }
+}
+
+@media (max-width: 1000px) {
+  .image {
+    display: none;
+  }
+
+  .main-container {
+    width: 400px;
+  }
+
+  .login-container {
+    width: 400px;
+    left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .login-container {
+    width: 100%;
+    height: 100%;
   }
 }
 
