@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/LoginService';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  
   drawerOpen: Boolean = false;
   currentPageIndex: Number = 0;
+  userName:String
+
 
   toggleDrawer() {
     this.drawerOpen = !this.drawerOpen;
@@ -24,11 +28,15 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('currentPageIndex', index.toString());
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private loginService:LoginService) {}
 
-  ngOnInit(): void {
-    this.currentPageIndex =
-      Number.parseInt(localStorage.getItem('currentPageIndex')) || 0;
-    // this.router.navigate(['Login'], { replaceUrl: true });
+  async ngOnInit() {
+    if(!this.loginService.isSessionExist()){
+      this.router.navigate(['Login'], { replaceUrl: true });
+      return
+    }
+  
+    this.currentPageIndex = Number.parseInt(localStorage.getItem('currentPageIndex')) || 0;
+    this.userName = this.loginService.userName
   }
 }

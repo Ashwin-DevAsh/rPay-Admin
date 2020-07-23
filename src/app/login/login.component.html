@@ -17,6 +17,7 @@
         <div class="input">
           <h5>Email</h5>
           <input
+            [value]="email"
             [class.showError]="invalidEmail"
             (input)="email = $event.target.value"
             placeholder="yourname@rajalakshmi.edu.in"
