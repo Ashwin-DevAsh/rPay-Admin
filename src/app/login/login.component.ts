@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {LoginService} from '../services/LoginService'
-import axios from 'axios'
+import { LoginService } from '../services/LoginService';
+import axios from 'axios';
 
 @Component({
   selector: 'app-login',
@@ -9,57 +9,62 @@ import axios from 'axios'
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router,private loginService:LoginService) {}
+  constructor(private router: Router, private loginService: LoginService) {}
   ngOnInit(): void {}
 
-  email: String = localStorage.getItem("email");
+  email: String = localStorage.getItem('email');
   password: String = '';
   invalidEmail: Boolean = false;
   invalidPassword: Boolean = false;
   isLoading: Boolean = false;
 
-    login() {
-      if (this.validate()) {
-        this.isLoading = true;
-        setTimeout(()=>{
-                axios.post(`${this.loginService.url}${this.loginService.endPoint}`
-                ,{email:this.email,password:this.password}).then((res)=>{
-                  console.log(res)
-                  if(res.data.message==="done"){
-                    this.loginService.userName=res.data.name
-                    this.loginService.email=res.data.email
-                    this.loginService.phoneNumber = res.data.numer
-                    this.loginService.imageURL=res.data.imageURL
-                    this.loginService.token = res.data.token
-                    localStorage.setItem("userName" , res.data.name)
-                    localStorage.setItem("email" , res.data.email)
-                    localStorage.setItem("phoneNumber" , res.data.numer)
-                    localStorage.setItem("url" , res.data.imageURL)
-                    localStorage.setItem("token",res.data.token)
-                    this.isLoading = false;
-                    this.router.navigate(['/Home']);
-                    return
-                  }else if(res.data.message==="invalid password"){
-                    console.log("Invalid password")
-                    this.isLoading=false
-                    this.invalidPassword=true
-                    setTimeout(()=>{
-                      this.invalidPassword=false
-                    },2000)
-                    return
-                  }else if(res.data.message==="invalid admin"){
-                    this.isLoading=false
-                    this.invalidEmail=true
-                    setTimeout(()=>{
-                      this.invalidEmail=false
-                    },2000)
-                    return
-                  }
-                  this.isLoading=false
-                }).catch(()=>{
-                      this.isLoading=false
-                })
-        },2000)
+  login() {
+    if (this.validate()) {
+      this.isLoading = true;
+      setTimeout(() => {
+        axios
+          .post(`${this.loginService.url}${this.loginService.endPoint}`, {
+            email: this.email,
+            password: this.password,
+          })
+          .then((res) => {
+            console.log(res);
+            if (res.data.message === 'done') {
+              this.loginService.userName = res.data.name;
+              this.loginService.email = res.data.email;
+              this.loginService.phoneNumber = res.data.numer;
+              this.loginService.imageURL = res.data.imageURL;
+              this.loginService.token = res.data.token;
+              localStorage.setItem('userName', res.data.name);
+              localStorage.setItem('email', res.data.email);
+              localStorage.setItem('phoneNumber', res.data.numer);
+              localStorage.setItem('url', res.data.imageURL);
+              localStorage.setItem('token', res.data.token);
+              this.isLoading = false;
+              this.router.navigate(['/Home'], { replaceUrl: true });
+              return;
+            } else if (res.data.message === 'invalid password') {
+              console.log('Invalid password');
+              this.isLoading = false;
+              this.invalidPassword = true;
+              setTimeout(() => {
+                this.invalidPassword = false;
+              }, 2000);
+              return;
+            } else if (res.data.message === 'invalid admin') {
+              this.isLoading = false;
+              this.invalidEmail = true;
+              setTimeout(() => {
+                this.invalidEmail = false;
+              }, 2000);
+              return;
+            }
+            this.isLoading = false;
+          })
+          .catch(() => {
+            this.isLoading = false;
+          });
+      }, 2000);
     }
   }
 
