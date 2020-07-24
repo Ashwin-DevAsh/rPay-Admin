@@ -13,7 +13,6 @@ $primarycolorGradient: #0779e4;
 .banner {
   height: 300px;
   box-shadow: 5px 5px 58px #f0f0f0, -5px -5px 58px #ffffff;
-
   width: 98%;
   overflow: hidden;
   background-color: white;
@@ -49,13 +48,13 @@ $primarycolorGradient: #0779e4;
   .card {
     height: 150px;
     flex: 1;
-    padding: 20px 15px;
+    padding: 20px 5px 20px 15px;
     margin: 0 10px;
-
-    border: solid 0.1px rgba($color: #000000, $alpha: 0);
+    overflow: hidden;
+    position: relative;
     border-radius: 5px;
     background-color: white;
-    transition: all 0.3s ease;
+    border: solid 0.1px rgba($color: $primarycolorGradient, $alpha: 0);
     box-shadow: 5px 5px 58px #f0f0f0, -5px -5px 58px #ffffff;
 
     h5 {
@@ -66,8 +65,26 @@ $primarycolorGradient: #0779e4;
     }
 
     &:hover {
-      border: solid 0.1px rgba($color: $primarycolorGradient, $alpha: 0.7);
       box-shadow: 5px 5px 58px #d1d1d1, -5px -5px 58px #ffffff;
+    }
+
+    .myChart {
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding-top: 2.5px;
+      height: 10%;
+      position: absolute;
+    }
+
+    .dropdown-icon {
+      position: absolute;
+      right: 50%;
+      transform: translateX(-50%);
+      height: 20px;
+      bottom: 0;
+      display: none;
+      transform: translateY(75%);
     }
 
     .currency {
@@ -81,6 +98,18 @@ $primarycolorGradient: #0779e4;
       margin-left: 5px;
       font-size: 1.8rem;
       margin-top: 7px;
+    }
+  }
+}
+
+.cards {
+  .card-selected {
+    border: solid 0.1px rgba($color: $primarycolorGradient, $alpha: 0.7);
+    box-shadow: 5px 5px 58px #d1d1d1, -5px -5px 58px #ffffff;
+  }
+  .card {
+    .isSelected {
+      display: flex;
     }
   }
 }
@@ -135,6 +164,7 @@ $primarycolorGradient: #0779e4;
     height: 40px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     &:hover {
       background-color: rgba(0, 0, 0, 0.05);
@@ -146,12 +176,80 @@ $primarycolorGradient: #0779e4;
 }
 
 .graph-container {
-  height: 300px;
+  position: relative;
   margin-bottom: 30px;
-  box-shadow: 5px 5px 58px #f0f0f0, -5px -5px 58px #ffffff;
+  box-shadow: 5px 5px 58px #d1d1d1, -5px -5px 58px #ffffff;
+  display: flex;
+  flex-direction: column;
   background-color: white;
   border-radius: 5px;
   width: 98%;
+
+  .main-graph-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 20px 20px 40px;
+  }
+
+  .graph-footer {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    padding-left: 40px;
+    align-items: center;
+    background-color: rgba($color: $primarycolorGradient, $alpha: 0.02);
+    border-top: solid 0.1px rgba($color: black, $alpha: 0.1);
+    h5 {
+      opacity: 0.6;
+    }
+  }
+
+  .topbar {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .intervals {
+      height: 40px;
+      margin-right: 20px;
+      min-width: 350px;
+      display: flex;
+      .interval {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.7;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        border: solid 0.1px rgba($color: black, $alpha: 0.2);
+      }
+
+      .download {
+        height: 40px;
+        cursor: pointer;
+        width: 40px;
+        display: flex;
+        opacity: 0.6;
+        justify-content: center;
+        align-items: center;
+        border: solid 0.1px rgba($color: black, $alpha: 0.2);
+        margin-left: 20px;
+        img {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .isInterval {
+        border: solid 0.15px rgba($color: $primarycolorGradient, $alpha: 1);
+      }
+    }
+  }
 }
 
 @media (max-width: 800px) {

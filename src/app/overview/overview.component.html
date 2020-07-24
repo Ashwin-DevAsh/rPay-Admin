@@ -16,57 +16,144 @@
       >
         <div>
           <img src="../../assets/calender.svg" alt="" />
-
-          <h5>Past 7 Days</h5>
+          <h5>{{ graphTimeLine }}</h5>
           <img class="dropdown-image" src="../../assets/dropdown.svg" alt="" />
         </div>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <div class="dropdown-item">
-          <h5>Past 30 Days</h5>
-        </div>
-        <div class="dropdown-item">
-          <h5>Past 90 Days</h5>
-        </div>
-        <div class="dropdown-item">
-          <h5>Past 1 Year</h5>
-        </div>
-        <div class="dropdown-item">
-          <h5>All Time</h5>
+        <div
+          class="dropdown-item"
+          (click)="selectTimeLine(item)"
+          *ngFor="let item of graphTimeLines"
+        >
+          {{ item }}
         </div>
       </div>
     </div>
   </div>
 
   <div class="cards">
-    <div class="card">
+    <div
+      [class]="{ card: true, 'card-selected': graphMode == 0 }"
+      (click)="selectGraphMode(0)"
+    >
       <div class="currency">
         <h2>100k</h2>
         <h3>RC</h3>
       </div>
       <h5>Payments</h5>
+      <canvas
+        class="myChart"
+        id="myChartPayments"
+        width="100%"
+        height="20px"
+      ></canvas>
+      <img
+        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 0 }"
+        src="../../assets/dropdownblue.svg"
+        alt=""
+      />
     </div>
-    <div class="card">
+    <div
+      [class]="{ card: true, 'card-selected': graphMode == 1 }"
+      (click)="selectGraphMode(1)"
+    >
       <div class="currency">
         <h2>100k</h2>
         <h3>RC</h3>
       </div>
       <h5>Cash in</h5>
+      <canvas
+        class="myChart"
+        id="myChartCashIn"
+        width="100%"
+        height="20px"
+      ></canvas>
+
+      <img
+        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 1 }"
+        src="../../assets/dropdownblue.svg"
+        alt=""
+      />
     </div>
-    <div id="card1" class="card">
+    <div
+      [class]="{ card: true, 'card-selected': graphMode == 2 }"
+      (click)="selectGraphMode(2)"
+    >
       <div class="currency">
         <h2>100k</h2>
       </div>
       <h5>Transactions</h5>
+      <canvas
+        class="myChart"
+        id="myChartTransactions"
+        width="100%"
+        height="20px"
+      ></canvas>
+      <img
+        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 2 }"
+        src="../../assets/dropdownblue.svg"
+        alt=""
+      />
     </div>
-    <div class="card">
+    <div
+      [class]="{ card: true, 'card-selected': graphMode == 3 }"
+      (click)="selectGraphMode(3)"
+    >
       <div class="currency">
         <h2>100k</h2>
         <h3>RC</h3>
       </div>
       <h5>Withdraw</h5>
+      <canvas
+        class="myChart"
+        id="myChartWithdraw"
+        width="100%"
+        height="20px"
+      ></canvas>
+      <img
+        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 3 }"
+        src="../../assets/dropdownblue.svg"
+        alt=""
+      />
     </div>
   </div>
 
-  <div class="graph-container"></div>
+  <div class="graph-container">
+    <div class="topbar">
+      <div class="intervals">
+        <div
+          (click)="selectIntervalMode(0)"
+          [class]="{ interval: true, isInterval: intervalMode == 0 }"
+        >
+          <h5>Daily</h5>
+        </div>
+        <div
+          (click)="selectIntervalMode(1)"
+          [class]="{ interval: true, isInterval: intervalMode == 1 }"
+        >
+          <h5>Weekly</h5>
+        </div>
+        <div
+          (click)="selectIntervalMode(2)"
+          [class]="{ interval: true, isInterval: intervalMode == 2 }"
+        >
+          <h5>Monthly</h5>
+        </div>
+
+        <div class="download">
+          <img src="../../assets/download.svg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="graph">
+      <div class="main-graph-container">
+        <canvas id="mainGraph" width="200" height="55"></canvas>
+      </div>
+      <div class="graph-footer">
+        <h5>Graph last updated in 4 hours</h5>
+      </div>
+    </div>
+  </div>
 </div>
