@@ -1,0 +1,94 @@
+$dimBackground: #f5f7f8;
+$primarycolor: #035aa6;
+$primarycolorGradient: #0779e4;
+
+.main-container {
+  background-color: $dimBackground;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 120%;
+  width: 100%;
+}
+
+.transaction-container {
+  background-color: white;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.14);
+  border-radius: 5px;
+  height: 100%;
+  width: 98%;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 20px;
+}
+
+.header {
+  height: 100px;
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    border: none;
+    background: $primarycolorGradient;
+    color: white;
+    border-radius: 2px;
+    padding: 5px 30px;
+    outline-width: 0;
+    height: 35px;
+    transition: all 0.5s ease;
+  }
+}
+.input-containers {
+  display: flex;
+}
+
+.search-inputs {
+  margin-right: 40px;
+  h4 {
+    font-size: 1.5rem;
+    opacity: 0.7;
+  }
+  input {
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    background-color: rgba(3, 90, 166, 0.05);
+    transition: all 0.5s ease;
+    height: 35px;
+    padding: 0 20px;
+    margin-top: 10px;
+    outline-width: 0.01;
+    outline-color: rgba(3, 90, 166, 0.1);
+  }
+}
+
+.transactions-table {
+  margin-top: 20px;
+
+  width: 95%;
+  .transaction {
+    padding: 12px 10px;
+    border-bottom: solid 0.1px rgba($color: #000000, $alpha: 0.1);
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    h4 {
+      font-weight: 500;
+      opacity: 0.8;
+      font-size: 1.5rem;
+    }
+  }
+
+  .transactions-heading {
+    background-color: #eaeff0;
+    border-top: solid 0.1px rgba($color: #000000, $alpha: 0.1);
+    border-bottom: solid 0.1px rgba($color: #000000, $alpha: 0.1);
+  }
+}

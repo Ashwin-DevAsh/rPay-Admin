@@ -8,22 +8,12 @@ import { OverviewService } from '../services/OverviewService';
   styleUrls: ['./overview.component.scss'],
 })
 export class OverviewComponent implements OnInit {
-  constructor(private overviewService: OverviewService) {}
+  constructor(public overviewService: OverviewService) {}
 
   ngOnInit(): void {
+    console.log('Mounted');
     this.createGraph();
   }
-
-  graphTimeLine: String = 'Past 7 Days';
-  graphTimeLines: Array<String> = [
-    'Past 30 Days',
-    'Past 90 Days',
-    'Past 1 Year',
-    'All Time',
-  ];
-
-  graphMode = 0;
-  intervalMode = 0;
 
   chart: Chart;
 
@@ -67,9 +57,14 @@ export class OverviewComponent implements OnInit {
 
   selectTimeLine(timeLine: String) {
     console.log(timeLine);
-    this.graphTimeLines.splice(this.graphTimeLines.indexOf(timeLine), 1);
-    this.graphTimeLines.push(this.graphTimeLine);
-    this.graphTimeLine = timeLine;
+    this.overviewService.graphTimeLines.splice(
+      this.overviewService.graphTimeLines.indexOf(timeLine),
+      1
+    );
+    this.overviewService.graphTimeLines.push(
+      this.overviewService.graphTimeLine
+    );
+    this.overviewService.graphTimeLine = timeLine;
   }
 
   updateChartFunctions: Array<Function> = [
@@ -80,20 +75,24 @@ export class OverviewComponent implements OnInit {
   ];
 
   selectGraphMode(modeIndex: number) {
-    var temp = this.graphMode;
-    this.graphMode = modeIndex;
+    console.log(this.overviewService.graphMode);
+
+    var temp = this.overviewService.graphMode;
+    this.overviewService.graphMode = modeIndex;
     this.updateChartFunctions[modeIndex]();
     this.updateChartFunctions[temp]();
     this.updateMainGraph();
   }
 
   selectIntervalMode(modeIndex: number) {
-    this.intervalMode = modeIndex;
+    this.overviewService.intervalMode = modeIndex;
   }
 
   createMainChart(
     ctx: any,
-    data: Array<Number> = this.overviewService.mainList[this.graphMode]
+    data: Array<Number> = this.overviewService.mainList[
+      this.overviewService.graphMode
+    ]
   ) {
     var gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 450);
 
@@ -163,7 +162,7 @@ export class OverviewComponent implements OnInit {
   createMiniChart(ctx: any, data: Array<Number>, modeIndex: Number) {
     var gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 450);
 
-    if (modeIndex == this.graphMode) {
+    if (modeIndex == this.overviewService.graphMode) {
       gradient.addColorStop(0, 'rgba(7, 121, 228, 0.05)');
       gradient.addColorStop(0.1, 'rgba(7, 121, 228, 0)');
       gradient.addColorStop(0.2, 'rgba(7, 121, 228, 0)');
@@ -199,7 +198,8 @@ export class OverviewComponent implements OnInit {
             data: data,
             fill: true,
             backgroundColor: gradient,
-            borderColor: modeIndex == this.graphMode ? '#0779e4' : 'grey',
+            borderColor:
+              modeIndex == this.overviewService.graphMode ? '#0779e4' : 'grey',
             borderWidth: 1,
           },
         ],

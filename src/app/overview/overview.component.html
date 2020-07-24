@@ -16,7 +16,7 @@
       >
         <div>
           <img src="../../assets/calender.svg" alt="" />
-          <h5>{{ graphTimeLine }}</h5>
+          <h5>{{ overviewService.graphTimeLine }}</h5>
           <img class="dropdown-image" src="../../assets/dropdown.svg" alt="" />
         </div>
       </button>
@@ -24,7 +24,7 @@
         <div
           class="dropdown-item"
           (click)="selectTimeLine(item)"
-          *ngFor="let item of graphTimeLines"
+          *ngFor="let item of overviewService.graphTimeLines"
         >
           {{ item }}
         </div>
@@ -34,7 +34,7 @@
 
   <div class="cards">
     <div
-      [class]="{ card: true, 'card-selected': graphMode == 0 }"
+      [class]="{ card: true, 'card-selected': overviewService.graphMode == 0 }"
       (click)="selectGraphMode(0)"
     >
       <div class="currency">
@@ -49,13 +49,16 @@
         height="20px"
       ></canvas>
       <img
-        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 0 }"
+        [class]="{
+          'dropdown-icon': true,
+          isSelected: overviewService.graphMode == 0
+        }"
         src="../../assets/dropdownblue.svg"
         alt=""
       />
     </div>
     <div
-      [class]="{ card: true, 'card-selected': graphMode == 1 }"
+      [class]="{ card: true, 'card-selected': overviewService.graphMode == 1 }"
       (click)="selectGraphMode(1)"
     >
       <div class="currency">
@@ -71,13 +74,16 @@
       ></canvas>
 
       <img
-        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 1 }"
+        [class]="{
+          'dropdown-icon': true,
+          isSelected: overviewService.graphMode == 1
+        }"
         src="../../assets/dropdownblue.svg"
         alt=""
       />
     </div>
     <div
-      [class]="{ card: true, 'card-selected': graphMode == 2 }"
+      [class]="{ card: true, 'card-selected': overviewService.graphMode == 2 }"
       (click)="selectGraphMode(2)"
     >
       <div class="currency">
@@ -91,13 +97,16 @@
         height="20px"
       ></canvas>
       <img
-        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 2 }"
+        [class]="{
+          'dropdown-icon': true,
+          isSelected: overviewService.graphMode == 2
+        }"
         src="../../assets/dropdownblue.svg"
         alt=""
       />
     </div>
     <div
-      [class]="{ card: true, 'card-selected': graphMode == 3 }"
+      [class]="{ card: true, 'card-selected': overviewService.graphMode == 3 }"
       (click)="selectGraphMode(3)"
     >
       <div class="currency">
@@ -112,7 +121,10 @@
         height="20px"
       ></canvas>
       <img
-        [class]="{ 'dropdown-icon': true, isSelected: graphMode == 3 }"
+        [class]="{
+          'dropdown-icon': true,
+          isSelected: overviewService.graphMode == 3
+        }"
         src="../../assets/dropdownblue.svg"
         alt=""
       />
@@ -124,19 +136,28 @@
       <div class="intervals">
         <div
           (click)="selectIntervalMode(0)"
-          [class]="{ interval: true, isInterval: intervalMode == 0 }"
+          [class]="{
+            interval: true,
+            isInterval: overviewService.intervalMode == 0
+          }"
         >
           <h5>Daily</h5>
         </div>
         <div
           (click)="selectIntervalMode(1)"
-          [class]="{ interval: true, isInterval: intervalMode == 1 }"
+          [class]="{
+            interval: true,
+            isInterval: overviewService.intervalMode == 1
+          }"
         >
           <h5>Weekly</h5>
         </div>
         <div
           (click)="selectIntervalMode(2)"
-          [class]="{ interval: true, isInterval: intervalMode == 2 }"
+          [class]="{
+            interval: true,
+            isInterval: overviewService.intervalMode == 2
+          }"
         >
           <h5>Monthly</h5>
         </div>

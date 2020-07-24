@@ -74,6 +74,7 @@ $primarycolorGradient: #0779e4;
       right: 0;
       padding-top: 2.5px;
       height: 10%;
+      min-height: 10%;
       position: absolute;
     }
 
@@ -261,5 +262,33 @@ $primarycolorGradient: #0779e4;
   .cards {
     grid-template-columns: repeat(2, 1fr);
     row-gap: 30px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cards {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 30px;
+  }
+  .graph-container {
+    .main-graph-container {
+      margin: 30px 10px 20px 10px;
+      display: none;
+    }
+    .graph-footer {
+      display: none;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      justify-content: center;
+      .intervals {
+        min-width: 0px;
+
+        width: 100%;
+        margin-left: 20px;
+      }
+    }
   }
 }

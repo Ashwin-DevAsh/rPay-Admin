@@ -6,6 +6,17 @@ import { Injectable } from '@angular/core';
 export class OverviewService {
   constructor() {}
 
+  graphTimeLine: String = 'Past 7 Days';
+  graphTimeLines: Array<String> = [
+    'Past 30 Days',
+    'Past 90 Days',
+    'Past 1 Year',
+    'All Time',
+  ];
+
+  graphMode = 0;
+  intervalMode = 0;
+
   paymentList = [
     0,
     10,
