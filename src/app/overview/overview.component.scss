@@ -53,6 +53,7 @@ $primarycolorGradient: #0779e4;
     overflow: hidden;
     position: relative;
     border-radius: 5px;
+    cursor: pointer;
     background-color: white;
     border: solid 0.1px rgba($color: $primarycolorGradient, $alpha: 0);
     box-shadow: 5px 5px 58px #f0f0f0, -5px -5px 58px #ffffff;

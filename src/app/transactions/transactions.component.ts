@@ -1,15 +1,58 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionsService } from './TransactionsService';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
-  styleUrls: ['./transactions.component.scss']
+  styleUrls: ['./transactions.component.scss'],
 })
 export class TransactionsComponent implements OnInit {
+  pageStatus = 'Showing 0 to 0 of 0';
 
-  constructor() { }
+  constructor(public transactionService: TransactionsService) {}
 
-  ngOnInit(): void {
+  transactions = [];
+  isLoading = true;
+
+  paymentId = [];
+
+  async ngOnInit() {
+    await this.transactionService.getTransactions();
+    this.transactions = this.transactionService.getNext();
+    this.pageStatus = `Showing ${this.transactions[0].transactionid} to ${
+      this.transactions[this.transactions.length - 1].transactionid
+    } of ${this.transactionService.allTransactions.length}`;
+
+    this.isLoading = false;
   }
 
+  nav(next = true) {
+    this.isLoading = true;
+    if (next) {
+      this.transactions = this.transactionService.getNext(true);
+    } else {
+      this.transactions = this.transactionService.getPrev();
+    }
+    this.pageStatus = `Showing ${this.transactions[0].transactionid} to ${
+      this.transactions[this.transactions.length - 1].transactionid
+    } of ${this.transactionService.allTransactions.length}`;
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
+  }
+
+  filter() {}
+
+  download() {
+    this.isLoading = true;
+    const options = {
+      title: 'rpay-transactions',
+
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+    const csvExporter = new ExportToCsv(options);
+    csvExporter.generateCsv(this.transactionService.allTransactions);
+    this.isLoading = false;
+  }
 }

@@ -17,36 +17,7 @@ export class OverviewService {
   graphMode = 0;
   intervalMode = 0;
 
-  paymentList = [
-    0,
-    10,
-    3,
-    20,
-    40,
-    9,
-    0,
-    0,
-    10,
-    3,
-    20,
-    40,
-    9,
-    0,
-    0,
-    10,
-    3,
-    20,
-    40,
-    9,
-    0,
-    0,
-    10,
-    3,
-    20,
-    40,
-    9,
-    0,
-  ];
+  paymentList = [40, 9, 0, 0, 10, 3, 20, 40, 9, 0];
   cashInList = [0, 0, 0, 100, 20, 9, 0];
   transactions = [40, 50, 0, 50, 50, 0];
   withdrawList = [0, 0, 0, 0, 0, 0, 50, 50, 50, 5];

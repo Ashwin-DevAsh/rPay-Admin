@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/LoginService';
+import { LoginService } from './LoginService';
 import axios from 'axios';
 
 @Component({
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
     }
     if (this.password.length < 8) {
       this.invalidPassword = true;
-      validPassword = true;
+      validPassword = false;
       setTimeout(() => {
         this.invalidPassword = false;
       }, 2000);

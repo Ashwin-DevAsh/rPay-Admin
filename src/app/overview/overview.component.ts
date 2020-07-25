@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
-import { OverviewService } from '../services/OverviewService';
+import { OverviewService } from './OverviewService';
 
 @Component({
   selector: 'app-overview',
