@@ -9,5 +9,9 @@ import { UserService } from './UserService';
 export class AlluserComponent implements OnInit {
   constructor(public userService: UserService) {}
 
-  async ngOnInit() {}
+  async ngOnInit() {
+    this.userService.selectedUser = JSON.parse(
+      localStorage.getItem('selectedUser')
+    );
+  }
 }

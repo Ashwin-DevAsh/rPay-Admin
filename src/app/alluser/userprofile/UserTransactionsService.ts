@@ -42,7 +42,11 @@ export class UserTransactionsService {
   }
 
   numberWithCommas(x: string) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    try {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    } catch {
+      return x;
+    }
   }
 
   getNext(isMove = false): Array<any> {
