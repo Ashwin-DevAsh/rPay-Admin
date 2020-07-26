@@ -35,10 +35,6 @@ export class UserprofileComponent implements OnInit {
     this.isLoading = false;
   }
 
-  numberWithCommas(x: string) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-
   getColor(number: string, index: number): String {
     if (this.colorMap[number]) {
       return this.colorMap[number];
