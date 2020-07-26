@@ -17,13 +17,13 @@ export class HomeComponent implements OnInit {
     console.log(this.drawerOpen);
   }
 
-  isCurrentPage(myIndex: Number) {
-    return myIndex == this.currentPageIndex;
+  isCurrentPage(myPage: string) {
+    return this.router.url.includes(myPage);
   }
 
-  selectPage(index: Number) {
-    this.currentPageIndex = index;
-    localStorage.setItem('currentPageIndex', index.toString());
+  selectPage(page: String) {
+    console.log('hello');
+    this.router.navigate([`Home/${page}`]);
   }
 
   constructor(private router: Router, private loginService: LoginService) {}
@@ -34,8 +34,6 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.currentPageIndex =
-      Number.parseInt(localStorage.getItem('currentPageIndex')) || 0;
     this.userName = this.loginService.userName;
   }
 }

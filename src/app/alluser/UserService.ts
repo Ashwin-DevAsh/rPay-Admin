@@ -11,6 +11,19 @@ export class UserService {
   allUsers = [];
   users = [];
   pageIndex = 0;
+  selectedUser = JSON.parse(localStorage.getItem('selectedUser'));
+
+  colors = [
+    '#8bc34a',
+    '#f9a825',
+    '#00b0ff',
+    '#ff1744',
+    '#512da8',
+    '#00acc1',
+    '#1a237e',
+    '#5d4037',
+    '#880e4f',
+  ];
 
   async getUsers() {
     var response;

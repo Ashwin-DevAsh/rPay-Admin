@@ -91,6 +91,20 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.spiner {
+  top: 0;
+  position: fixed;
+  width: 100vw;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+
+  z-index: 2;
+  justify-content: center;
+}
+
 @keyframes spinner-border {
   to {
     transform: rotate(360deg);
@@ -107,4 +121,26 @@ body {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
   color: $primarycolor;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgba($color: #000000, $alpha: 0.4);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($color: #000000, $alpha: 0.3);
 }

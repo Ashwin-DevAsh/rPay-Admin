@@ -31,32 +31,32 @@
       <div class="divider"></div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(0) }"
-        (click)="selectPage(0)"
+        [ngClass]="{ options: true, selected: isCurrentPage('Overview') }"
+        (click)="selectPage('Overview')"
       >
         <img src="../../assets/overview.svg" alt="" />
         <h4>Overview</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(1) }"
-        (click)="selectPage(1)"
+        [ngClass]="{ options: true, selected: isCurrentPage('Transactions') }"
+        (click)="selectPage('Transactions')"
       >
         <img src="../../assets/transactions.svg" alt="" />
         <h4>Transactions</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(2) }"
-        (click)="selectPage(2)"
+        [ngClass]="{ options: true, selected: isCurrentPage('Nodes') }"
+        (click)="selectPage('Nodes')"
       >
         <img src="../../assets/nodes.svg" alt="" />
         <h4>Nodes</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(3) }"
-        (click)="selectPage(3)"
+        [ngClass]="{ options: true, selected: isCurrentPage('Blocks') }"
+        (click)="selectPage('Blocks')"
       >
         <img src="../../assets/blocks.svg" alt="" />
         <h4>Blocks</h4>
@@ -65,24 +65,24 @@
       <div class="divider"></div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(4) }"
-        (click)="selectPage(4)"
+        [ngClass]="{ options: true, selected: isCurrentPage('AllUsers') }"
+        (click)="selectPage('AllUsers')"
       >
         <img src="../../assets/users.svg" alt="" />
         <h4>All Users</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(5) }"
-        (click)="selectPage(5)"
+        [ngClass]="{ options: true, selected: isCurrentPage('AllMerchants') }"
+        (click)="selectPage('AllMerchants')"
       >
         <img src="../../assets/merchants.svg" alt="" />
         <h4>All Merchants</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(6) }"
-        (click)="selectPage(6)"
+        [ngClass]="{ options: true, selected: isCurrentPage('AllAdmins') }"
+        (click)="selectPage('AllAdmins')"
       >
         <img src="../../assets/admin.svg" alt="" />
         <h4>All Admins</h4>
@@ -91,24 +91,24 @@
       <div class="divider"></div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(7) }"
-        (click)="selectPage(7)"
+        [ngClass]="{ options: true, selected: isCurrentPage('AddUsers') }"
+        (click)="selectPage('AddUsers')"
       >
         <img src="../../assets/addUsers.svg" alt="" />
         <h4>Add Users</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(8) }"
-        (click)="selectPage(8)"
+        [ngClass]="{ options: true, selected: isCurrentPage('AddMerchants') }"
+        (click)="selectPage('AddMerchants')"
       >
         <img src="../../assets/addMerchants.svg" alt="" />
         <h4>Add Merchants</h4>
       </div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(9) }"
-        (click)="selectPage(9)"
+        [ngClass]="{ options: true, selected: isCurrentPage('AddAdmins') }"
+        (click)="selectPage('AddAdmins')"
       >
         <img src="../../assets/addAdmin.svg" alt="" />
         <h4>Add Admins</h4>
@@ -117,8 +117,8 @@
       <div class="divider"></div>
 
       <div
-        [ngClass]="{ options: true, selected: isCurrentPage(10) }"
-        (click)="selectPage(10)"
+        [ngClass]="{ options: true, selected: isCurrentPage('MyAccount') }"
+        (click)="selectPage('MyAccount')"
       >
         <img src="../../assets/myAccount.svg" alt="" />
         <h4>My Account</h4>
@@ -126,7 +126,7 @@
     </div>
   </div>
 
-  <div [ngSwitch]="currentPageIndex" class="page-container">
+  <!-- <div [ngSwitch]="currentPageIndex" class="page-container">
     <app-overview *ngSwitchCase="0"></app-overview>
     <app-transactions *ngSwitchCase="1"></app-transactions>
     <app-nodes *ngSwitchCase="2"> </app-nodes>
@@ -141,5 +141,8 @@
     <app-addadmins *ngSwitchCase="9"></app-addadmins>
 
     <app-myaccount *ngSwitchCase="10"></app-myaccount>
+  </div> -->
+  <div class="page-container">
+    <router-outlet></router-outlet>
   </div>
 </div>

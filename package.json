@@ -22,11 +22,12 @@
     "@angular/platform-browser-dynamic": "~10.0.4",
     "@angular/router": "~10.0.4",
     "@auth0/angular-jwt": "^5.0.1",
+    "angularx-qrcode": "^2.3.5",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.9.3",
     "export-to-csv": "^0.2.1",
-    "jsonwebtoken": "^8.5.1",
+    "qrcode": "^1.4.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

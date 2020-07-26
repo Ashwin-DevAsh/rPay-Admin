@@ -17,6 +17,8 @@ import { AlladminsComponent } from './alladmins/alladmins.component';
 import { AllmerchantsComponent } from './allmerchants/allmerchants.component';
 import { AlluserComponent } from './alluser/alluser.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
+import { UserprofileComponent } from './alluser/userprofile/userprofile.component';
+import { ListusersComponent } from './alluser/listusers/listusers.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { MyaccountComponent } from './myaccount/myaccount.component';
     AllmerchantsComponent,
     AlluserComponent,
     MyaccountComponent,
+    UserprofileComponent,
+    ListusersComponent,
   ],
   imports: [
     BrowserModule,
