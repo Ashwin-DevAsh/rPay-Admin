@@ -11,6 +11,7 @@ export class TransactionsService {
   transactions: Array<any>;
   page: number = 0;
   allTransactions: Array<any>;
+  allTransactionsTemp: Array<any>;
 
   async getTransactions() {
     var response;
@@ -20,10 +21,12 @@ export class TransactionsService {
       });
 
       this.allTransactions = response.data.rows;
+      this.allTransactionsTemp = response.data.rows;
       console.log(this.allTransactions);
     } catch (e) {
       response = { data: { err: e } };
       this.allTransactions = [];
+      this.allTransactionsTemp = [];
     }
     console.log(response);
   }
@@ -34,7 +37,6 @@ export class TransactionsService {
       this.transactions[this.transactions.length - 1].transactionid > 1
     )
       this.page += 1;
-
     this.transactions = [];
     for (
       var i = this.allTransactions.length - this.page * 25 - 1;
@@ -42,6 +44,7 @@ export class TransactionsService {
       i--
     ) {
       this.transactions.push({
+        index: i + 1,
         transactionid: this.allTransactions[i].transactionid,
         amount: this.allTransactions[i].amount + '.00',
         fromid:
@@ -51,7 +54,6 @@ export class TransactionsService {
         transactiontime: this.allTransactions[i].transactiontime,
       });
     }
-
     return this.transactions;
   }
 
@@ -64,6 +66,7 @@ export class TransactionsService {
       i--
     ) {
       this.transactions.push({
+        index: i + 1,
         transactionid: this.allTransactions[i].transactionid,
         amount: this.allTransactions[i].amount + '.00',
         fromid: '+' + this.allTransactions[i].fromid,
@@ -71,7 +74,27 @@ export class TransactionsService {
         transactiontime: this.allTransactions[i].transactiontime,
       });
     }
-
     return this.transactions;
+  }
+
+  filter(query: string) {
+    this.page = 0;
+    if (query == '') {
+      this.allTransactions = this.allTransactionsTemp;
+      return;
+    }
+
+    var index = Number.parseInt(query);
+    if (!index) {
+      this.allTransactions = [];
+      return;
+    }
+    if (index > this.allTransactionsTemp.length) {
+      this.allTransactions = [];
+      return;
+    }
+    console.log(index);
+    this.allTransactions = [];
+    this.allTransactions.push(this.allTransactionsTemp[index - 1]);
   }
 }

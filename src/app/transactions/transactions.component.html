@@ -8,17 +8,17 @@
     <div class="header">
       <div class="input-containers">
         <div class="search-inputs">
-          <input placeholder="Payment ID" type="text" />
+          <input #query placeholder="Transaction ID" type="text" />
         </div>
-        <div class="search-inputs">
+        <!-- <div class="search-inputs">
           <input placeholder="From" type="text" />
         </div>
         <div class="search-inputs">
           <input placeholder="To" type="text" />
-        </div>
+        </div> -->
       </div>
       <div class="header-buttons">
-        <button>Search</button>
+        <button (click)="filter(query.value)">Search</button>
         <div (click)="download()" class="download">
           <img src="../../assets/download.svg" alt="" />
         </div>
@@ -28,7 +28,7 @@
     <div class="transactions-table">
       <div class="transactions-heading transaction">
         <div>
-          <h4>Payment ID</h4>
+          <h4>Transaction ID</h4>
         </div>
         <div>
           <h4>Amount</h4>

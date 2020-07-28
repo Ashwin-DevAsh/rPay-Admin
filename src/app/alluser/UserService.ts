@@ -9,6 +9,7 @@ export class UserService {
   constructor(private loginService: LoginService) {}
 
   allUsers = [];
+  allUsersTemp: Array<any> = [];
   users = [];
   pageIndex = 0;
   selectedUser = JSON.parse(localStorage.getItem('selectedUser'));
@@ -33,12 +34,26 @@ export class UserService {
       });
 
       this.allUsers = response.data;
+      this.allUsersTemp = response.data;
       console.log(this.allUsers);
     } catch (e) {
       response = { data: { err: e } };
       this.allUsers = [];
     }
     console.log(response);
+  }
+
+  filter(query: String) {
+    this.pageIndex = 0;
+    this.allUsers = [];
+    for (var i = 0; i < this.allUsersTemp.length; i++) {
+      if (
+        this.allUsersTemp[i].name.toLowerCase().includes(query.toLowerCase())
+      ) {
+        console.log(this.allUsersTemp[i]);
+        this.allUsers.push(this.allUsersTemp[i]);
+      }
+    }
   }
 
   getNext(isMove = false): Array<any> {

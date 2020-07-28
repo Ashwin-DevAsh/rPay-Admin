@@ -7,7 +7,7 @@ $primarycolorGradient: #0779e4;
   align-items: center;
   justify-content: flex-start;
   display: flex;
-  overflow-x: hidden;
+
   flex-direction: column;
   position: relative;
   min-height: 100vh;
@@ -20,11 +20,11 @@ $primarycolorGradient: #0779e4;
   border-radius: 5px;
   width: 98%;
   display: flex;
+
   position: relative;
   padding-bottom: 40px;
   min-height: 10%;
-  min-height: 87vh;
-
+  min-height: 100vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -72,7 +72,7 @@ $primarycolorGradient: #0779e4;
   input {
     border-radius: 5px;
     border: none;
-    width: 100%;
+    width: 200%;
     background-color: rgba(3, 90, 166, 0.05);
     transition: all 0.5s ease;
     height: 40px;
@@ -109,7 +109,7 @@ $primarycolorGradient: #0779e4;
     display: grid;
     width: 100%;
     cursor: pointer;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: repeat(5, 20%);
     h4 {
       font-weight: 500;
       opacity: 0.8;
@@ -185,4 +185,21 @@ $primarycolorGradient: #0779e4;
 
   z-index: 2;
   justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .transactions-table {
+    .transaction {
+      grid-template-columns: repeat(3, 33%);
+      row-gap: 20px;
+    }
+  }
+}
+@media (max-width: 500px) {
+  .transactions-table {
+    .transaction {
+      grid-template-columns: 60% 40%;
+      row-gap: 20px;
+    }
+  }
 }

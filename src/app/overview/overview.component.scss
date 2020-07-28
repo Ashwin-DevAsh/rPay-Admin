@@ -10,6 +10,52 @@ $primarycolorGradient: #0779e4;
   background-color: $dimBackground;
 }
 
+.top-banner {
+  width: 98%;
+  margin: 30px 0 0 0;
+  height: 70px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-radius: 2px;
+  box-shadow: 5px 5px 58px #f0f0f0, -5px -5px 58px #ffffff;
+  background-color: white;
+
+  .currency-container-bg {
+    width: 400px;
+    height: 100%;
+    background-image: -webkit-linear-gradient(
+      30deg,
+      rgba($color: #38a832, $alpha: 0.3) 49.5%,
+      transparent 50%
+    );
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+
+  .currency-container {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    width: 400px;
+    color: white;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    background-image: -webkit-linear-gradient(
+      -40deg,
+      #38a832 49.5%,
+      transparent 50%
+    );
+
+    h4 {
+      opacity: 0.8;
+    }
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+}
+
 .banner {
   height: 300px;
   box-shadow: 5px 5px 58px #f0f0f0, -5px -5px 58px #ffffff;
@@ -182,6 +228,7 @@ $primarycolorGradient: #0779e4;
   margin-bottom: 30px;
   box-shadow: 5px 5px 58px #d1d1d1, -5px -5px 58px #ffffff;
   display: flex;
+  min-height: 400px;
   flex-direction: column;
   background-color: white;
   border-radius: 5px;
@@ -191,13 +238,15 @@ $primarycolorGradient: #0779e4;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px 20px 20px 40px;
+    margin: 30px 20px 80px 40px;
   }
 
   .graph-footer {
     height: 50px;
     width: 100%;
+    bottom: 0px;
     display: flex;
+    position: absolute;
     padding-left: 40px;
     align-items: center;
     background-color: rgba($color: $primarycolorGradient, $alpha: 0.02);
@@ -273,7 +322,7 @@ $primarycolorGradient: #0779e4;
   }
   .graph-container {
     .main-graph-container {
-      margin: 30px 10px 20px 10px;
+      height: 0px;
       display: none;
     }
     .graph-footer {

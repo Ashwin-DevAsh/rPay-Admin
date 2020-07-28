@@ -8,7 +8,7 @@
     <div class="header">
       <div class="input-containers">
         <div class="search-inputs">
-          <input placeholder="Enter name or number" type="text" />
+          <input #query placeholder="Enter name or number" type="text" />
         </div>
         <!-- <div class="search-inputs">
           <input placeholder="From" type="text" />
@@ -17,7 +17,7 @@
           <input placeholder="To" type="text" />
         </div> -->
       </div>
-      <button>Search</button>
+      <button (click)="filter(query.value)">Search</button>
     </div>
     <div class="users-table">
       <div

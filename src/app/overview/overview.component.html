@@ -1,4 +1,13 @@
 <div class="main-container">
+  <div *ngIf="isLoading.length != 3" class="spiner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <!-- <div class="top-banner">
+    <div class="currency-container-bg"></div>
+    <div class="currency-container"></div>
+  </div> -->
   <div class="banner">
     <img class="top-bg" src="../../assets/top_bg.png" alt="" />
     <img class="bottom-bg" src="../../assets/bottom_bg.png" alt="" />
@@ -38,7 +47,9 @@
       (click)="selectGraphMode(0)"
     >
       <div class="currency">
-        <h2>100k</h2>
+        <h2>
+          {{ nFormatter(overviewService.transactionsVolume[interval].total) }}
+        </h2>
         <h3>RC</h3>
       </div>
       <h5>Transactions Volume</h5>
@@ -62,7 +73,7 @@
       (click)="selectGraphMode(1)"
     >
       <div class="currency">
-        <h2>100k</h2>
+        <h2>{{ nFormatter(overviewService.generated[interval].total) }}</h2>
         <h3>RC</h3>
       </div>
       <h5>Amount Generated</h5>
@@ -87,7 +98,9 @@
       (click)="selectGraphMode(2)"
     >
       <div class="currency">
-        <h2>100k</h2>
+        <h2>
+          {{ nFormatter(overviewService.noTransactions[interval].total) }}
+        </h2>
       </div>
       <h5>Number of Transactions</h5>
       <canvas
@@ -110,7 +123,7 @@
       (click)="selectGraphMode(3)"
     >
       <div class="currency">
-        <h2>100k</h2>
+        <h2>{{ nFormatter(overviewService.withdraw[interval].total) }}</h2>
         <h3>RC</h3>
       </div>
       <h5>Withdraw Volume</h5>
@@ -135,7 +148,7 @@
     <div class="topbar">
       <div class="intervals">
         <div
-          (click)="selectIntervalMode(0)"
+          (click)="selectIntervalMode(0, 'daily')"
           [class]="{
             interval: true,
             isInterval: overviewService.intervalMode == 0
@@ -144,7 +157,7 @@
           <h5>Daily</h5>
         </div>
         <div
-          (click)="selectIntervalMode(1)"
+          (click)="selectIntervalMode(1, 'weekly')"
           [class]="{
             interval: true,
             isInterval: overviewService.intervalMode == 1
@@ -153,7 +166,7 @@
           <h5>Weekly</h5>
         </div>
         <div
-          (click)="selectIntervalMode(2)"
+          (click)="selectIntervalMode(2, 'monthly')"
           [class]="{
             interval: true,
             isInterval: overviewService.intervalMode == 2
@@ -162,7 +175,7 @@
           <h5>Monthly</h5>
         </div>
 
-        <div class="download">
+        <div (click)="downloadReport()" class="download">
           <img src="../../assets/download.svg" alt="" />
         </div>
       </div>
@@ -173,7 +186,16 @@
         <canvas id="mainGraph" width="200" height="55"></canvas>
       </div>
       <div class="graph-footer">
-        <h5>Graph last updated in 4 hours</h5>
+        <div
+          style="
+            height: 10px;
+            width: 10px;
+            border-radius: 5px;
+            background-color: orange;
+            margin-right: 10px;
+          "
+        ></div>
+        <h5>{{ graphStatus }}</h5>
       </div>
     </div>
   </div>

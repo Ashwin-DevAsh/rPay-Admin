@@ -24,6 +24,15 @@ export class ListusersComponent implements OnInit {
     this.isLoading = false;
   }
 
+  filter(query: String) {
+    this.isLoading = true;
+    this.userService.filter(query);
+    this.users = this.userService.getNext();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 500);
+  }
+
   nav(next = true) {
     if (next) {
       this.users = this.userService.getNext(true);
@@ -40,7 +49,7 @@ export class ListusersComponent implements OnInit {
 
   async openUsersProfile(item: Object) {
     this.userService.selectedUser = item;
-    await localStorage.setItem('selectedUser', JSON.stringify(item));
+    localStorage.setItem('selectedUser', JSON.stringify(item));
     this.router.navigate(['/Home/AllUsers/UserProfile']);
   }
 }

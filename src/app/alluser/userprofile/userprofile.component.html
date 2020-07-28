@@ -5,50 +5,53 @@
     </div>
   </div>
   <div class="profile-container">
-    <div class="profile">
-      <div class="qr-container">
-        <canvas id="qrcode"></canvas>
-        <div>
-          <h6>Scan this Qrcode to Pay</h6>
-          <h3>{{ userTransactionsService.balance }} RC</h3>
-        </div>
-      </div>
-      <div class="info">
-        <div class="listtile">
-          <div class="avatar">
-            <img src="../../../assets/user_profile.svg" alt="" />
-          </div>
-          <div class="details">
-            <h4>Name</h4>
-            <h6>{{ userService.selectedUser.name }}</h6>
+    <div class="profile-outer">
+      <div class="profile">
+        <div class="qr-container">
+          <canvas id="qrcode"></canvas>
+          <div>
+            <h6>Scan this Qrcode to Pay</h6>
+            <h3>{{ userTransactionsService.balance }} RC</h3>
           </div>
         </div>
-      </div>
+        <div class="info">
+          <div class="listtile">
+            <div class="avatar">
+              <img src="../../../assets/user_profile.svg" alt="" />
+            </div>
+            <div class="details">
+              <h4>Name</h4>
+              <h6>{{ userService.selectedUser.name }}</h6>
+            </div>
+          </div>
+        </div>
 
-      <div class="info">
-        <div class="listtile">
-          <div class="avatar">
-            <img src="../../../assets/user_mail.svg" alt="" />
-          </div>
-          <div class="details">
-            <h4>Email</h4>
-            <h6>{{ userService.selectedUser.email }}</h6>
+        <div class="info">
+          <div class="listtile">
+            <div class="avatar">
+              <img src="../../../assets/user_mail.svg" alt="" />
+            </div>
+            <div class="details">
+              <h4>Email</h4>
+              <h6>{{ userService.selectedUser.email }}</h6>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="info">
-        <div class="listtile">
-          <div class="avatar">
-            <img src="../../../assets/user_phone.svg" alt="" />
-          </div>
-          <div class="details">
-            <h4>Phone</h4>
-            <h6>+{{ userService.selectedUser.number }}</h6>
+        <div class="info">
+          <div class="listtile">
+            <div class="avatar">
+              <img src="../../../assets/user_phone.svg" alt="" />
+            </div>
+            <div class="details">
+              <h4>Phone</h4>
+              <h6>+{{ userService.selectedUser.number }}</h6>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="transactions-container">
       <!-- <div class="header">
         <div class="input-containers">
@@ -90,101 +93,103 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!isLoading" class="selected-transaction-view">
-      <div class="header">
-        <div
-          [style]="{
-            background: getColor(
-              transactions[selectedTransaction].number,
-              selectedTransaction
-            )
-          }"
-          class="avatar"
-        >
-          <h1>{{ transactions[selectedTransaction].name[0] }}</h1>
-        </div>
+    <div class="selected-transaction-outer">
+      <div *ngIf="!isLoading" class="selected-transaction-view">
+        <div class="header">
+          <div
+            [style]="{
+              background: getColor(
+                transactions[selectedTransaction].number,
+                selectedTransaction
+              )
+            }"
+            class="avatar"
+          >
+            <h1>{{ transactions[selectedTransaction].name[0] }}</h1>
+          </div>
 
-        <h4 class="amount">
-          {{
-            transactions[selectedTransaction].amount
-              .replace("+", "")
-              .replace("-", "")
-          }}
-          RC
-        </h4>
-        <div class="basic-info">
-          <h5>
+          <h4 class="amount">
             {{
-              transactions[selectedTransaction].isSend
-                ? "Paid to"
-                : transactions[selectedTransaction].isGenerated
-                ? "Added from"
-                : "Received from"
+              transactions[selectedTransaction].amount
+                .replace("+", "")
+                .replace("-", "")
             }}
-          </h5>
-          <h4>{{ transactions[selectedTransaction].name }}</h4>
-        </div>
-      </div>
-      <div class="transaction-status">
-        <img src="../../../assets/done.svg" alt="" />
-        <div>
-          <h4>
-            {{
-              transactions[selectedTransaction].isSend
-                ? "Paid Successfully !"
-                : transactions[selectedTransaction].isGenerated
-                ? "Added Successfully !"
-                : "Received Successfully !"
-            }}
+            RC
           </h4>
-          <h5>{{ transactions[selectedTransaction].transactiontime }}</h5>
+          <div class="basic-info">
+            <h5>
+              {{
+                transactions[selectedTransaction].isSend
+                  ? "Paid to"
+                  : transactions[selectedTransaction].isGenerated
+                  ? "Added from"
+                  : "Received from"
+              }}
+            </h5>
+            <h4>{{ transactions[selectedTransaction].name }}</h4>
+          </div>
         </div>
-      </div>
-      <div class="transaction-info">
-        <div>
-          <h6>R pay Transaction ID</h6>
-          <h4>{{ transactions[selectedTransaction].transactionid }}</h4>
+        <div class="transaction-status">
+          <img src="../../../assets/done.svg" alt="" />
+          <div>
+            <h4>
+              {{
+                transactions[selectedTransaction].isSend
+                  ? "Paid Successfully !"
+                  : transactions[selectedTransaction].isGenerated
+                  ? "Added Successfully !"
+                  : "Received Successfully !"
+              }}
+            </h4>
+            <h5>{{ transactions[selectedTransaction].transactiontime }}</h5>
+          </div>
         </div>
-        <div>
-          <h6>
-            To :
-            {{
-              transactions[selectedTransaction].isSent
-                ? transactions[selectedTransaction].name
-                : userService.selectedUser.name
-            }}
-          </h6>
-          <h4>
-            +{{
-              transactions[selectedTransaction].isSent
-                ? transactions[selectedTransaction].number
-                : userService.selectedUser.number
-            }}
-          </h4>
-        </div>
-        <div *ngIf="!transactions[selectedTransaction].isGenerated">
-          <h6>
-            From :
-            {{
-              transactions[selectedTransaction].isSent
-                ? userService.selectedUser.name
-                : transactions[selectedTransaction].name
-            }}
-          </h6>
-          <h4>
-            {{
-              transactions[selectedTransaction].isSent
-                ? userService.selectedUser.number
-                : transactions[selectedTransaction].number
-            }}
-          </h4>
-        </div>
+        <div class="transaction-info">
+          <div>
+            <h6>R pay Transaction ID</h6>
+            <h4>{{ transactions[selectedTransaction].transactionid }}</h4>
+          </div>
+          <div>
+            <h6>
+              To :
+              {{
+                transactions[selectedTransaction].isSent
+                  ? transactions[selectedTransaction].name
+                  : userService.selectedUser.name
+              }}
+            </h6>
+            <h4>
+              +{{
+                transactions[selectedTransaction].isSent
+                  ? transactions[selectedTransaction].number
+                  : userService.selectedUser.number
+              }}
+            </h4>
+          </div>
+          <div *ngIf="!transactions[selectedTransaction].isGenerated">
+            <h6>
+              From :
+              {{
+                transactions[selectedTransaction].isSent
+                  ? userService.selectedUser.name
+                  : transactions[selectedTransaction].name
+              }}
+            </h6>
+            <h4>
+              {{
+                transactions[selectedTransaction].isSent
+                  ? userService.selectedUser.number
+                  : transactions[selectedTransaction].number
+              }}
+            </h4>
+          </div>
 
-        <div *ngIf="transactions[selectedTransaction].isGenerated">
-          <h6>{{ transactions[selectedTransaction].name }} ID</h6>
-          <h4>
-            {{ transactions[selectedTransaction].number }}
-          </h4>
+          <div *ngIf="transactions[selectedTransaction].isGenerated">
+            <h6>{{ transactions[selectedTransaction].name }} ID</h6>
+            <h4>
+              {{ transactions[selectedTransaction].number }}
+            </h4>
+          </div>
         </div>
       </div>
     </div>

@@ -34,21 +34,29 @@ export class TransactionsComponent implements OnInit {
     } else {
       this.transactions = this.transactionService.getPrev();
     }
-    this.pageStatus = `Showing ${this.transactions[0].transactionid} to ${
-      this.transactions[this.transactions.length - 1].transactionid
-    } of ${this.transactionService.allTransactions.length}`;
+    this.loadStatus();
     setTimeout(() => {
       this.isLoading = false;
     }, 500);
   }
 
-  filter() {}
+  loadStatus() {
+    this.pageStatus = `Showing ${this.transactions[0].transactionid} to ${
+      this.transactions[this.transactions.length - 1].transactionid
+    } of ${this.transactionService.allTransactions.length}`;
+  }
+
+  filter(query: string) {
+    console.log(query);
+    this.transactionService.filter(query);
+    this.transactions = this.transactionService.getNext();
+    this.pageStatus = `Showing ${this.transactionService.allTransactions.length} of ${this.transactionService.allTransactions.length}`;
+  }
 
   download() {
     this.isLoading = true;
     const options = {
       title: 'rpay-transactions',
-
       // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     const csvExporter = new ExportToCsv(options);

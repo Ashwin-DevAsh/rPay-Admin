@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 import { OverviewService } from './OverviewService';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-overview',
@@ -10,52 +11,122 @@ import { OverviewService } from './OverviewService';
 export class OverviewComponent implements OnInit {
   constructor(public overviewService: OverviewService) {}
 
-  ngOnInit(): void {
-    console.log('Mounted');
-    this.createGraph();
-  }
-
   chart: Chart;
 
+  interval = 'daily';
+
+  isLoading = [];
+
+  ngOnInit() {
+    console.log('Mounted');
+    this.createGraph();
+    this.loadData();
+  }
+
+  graphStatus: String = 'Transaction not occure';
+
+  loadData() {
+    this.overviewService.clear();
+
+    this.isLoading = [];
+    this.overviewService.getTransactionStats().then(() => {
+      this.isLoading.push(true);
+      this.createGraph();
+      this.overviewService.loadMainList();
+    });
+    this.overviewService.getGeneratedStats().then(() => {
+      this.isLoading.push(true);
+      this.createGraph();
+      this.overviewService.loadMainList();
+    });
+    this.overviewService.getNoTransactionStats().then(() => {
+      this.isLoading.push(true);
+      this.createGraph();
+      this.overviewService.loadMainList();
+    });
+  }
+
   createGraph() {
-    this.updateMainGraph();
-    this.updatePaymentGraph();
-    this.updateCashChart();
-    this.updateTransactionChart();
-    this.updateWithdrawChart();
-    this.updateMainGraph();
+    if (this.isLoading.length == 3) {
+      this.updateMainGraph();
+      this.updatePaymentGraph();
+      this.updateCashChart();
+      this.updateTransactionChart();
+      this.updateWithdrawChart();
+      this.updateMainGraph();
+    }
   }
 
   updatePaymentGraph = () => {
     var payemtsChart = document.getElementById('myChartPayments');
-    this.createMiniChart(payemtsChart, this.overviewService.paymentList, 0);
+    this.createMiniChart(
+      payemtsChart,
+      this.overviewService.transactionsVolume[this.interval].x,
+      0
+    );
   };
 
   updateCashChart = () => {
     var cashInChart = document.getElementById('myChartCashIn');
-    this.createMiniChart(cashInChart, this.overviewService.cashInList, 1);
+    this.createMiniChart(
+      cashInChart,
+      this.overviewService.generated[this.interval].x,
+      1
+    );
   };
 
   updateTransactionChart = () => {
     var transactionsChart = document.getElementById('myChartTransactions');
     this.createMiniChart(
       transactionsChart,
-      this.overviewService.transactions,
+      this.overviewService.noTransactions[this.interval].x,
       2
     );
   };
 
   updateWithdrawChart = () => {
     var withdrawChart = document.getElementById('myChartWithdraw');
-    this.createMiniChart(withdrawChart, this.overviewService.withdrawList, 3);
+    this.createMiniChart(
+      withdrawChart,
+      this.overviewService.withdraw[this.interval].x,
+      3
+    );
   };
 
   updateMainGraph = () => {
+    var graphContainer = document.getElementsByClassName(
+      'main-graph-container'
+    )[0];
+    document.getElementById('mainGraph').remove();
+    graphContainer.innerHTML =
+      '<canvas id="mainGraph" width="200" height="55"><canvas>';
+
     var mainChart = document.getElementById('mainGraph');
-    this.createMainChart(mainChart);
+    if (this.isLoading.length == 3)
+      this.createMainChart(
+        mainChart,
+        this.overviewService.mainList[this.overviewService.graphMode][
+          this.interval
+        ].x,
+        this.overviewService.mainList[this.overviewService.graphMode][
+          this.interval
+        ].fromDate
+      );
   };
 
-  selectTimeLine(timeLine: String) {
+  downloadReport() {
+    const options = {
+      title: 'rpay-transactions',
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+    const csvExporter = new ExportToCsv(options);
+    console.log(this.overviewService.transactionsVolume[this.interval]);
+    csvExporter.generateCsv(
+      this.overviewService.transactionsVolume[this.interval].csvData
+    );
+  }
+
+  async selectTimeLine(timeLine: String) {
     console.log(timeLine);
     this.overviewService.graphTimeLines.splice(
       this.overviewService.graphTimeLines.indexOf(timeLine),
@@ -65,6 +136,7 @@ export class OverviewComponent implements OnInit {
       this.overviewService.graphTimeLine
     );
     this.overviewService.graphTimeLine = timeLine;
+    this.loadData();
   }
 
   updateChartFunctions: Array<Function> = [
@@ -81,19 +153,21 @@ export class OverviewComponent implements OnInit {
     this.overviewService.graphMode = modeIndex;
     this.updateChartFunctions[modeIndex]();
     this.updateChartFunctions[temp]();
+
     this.updateMainGraph();
   }
 
-  selectIntervalMode(modeIndex: number) {
+  selectIntervalMode(modeIndex: number, modeType: string) {
+    this.interval = modeType;
     this.overviewService.intervalMode = modeIndex;
+    this.createGraph();
   }
 
-  createMainChart(
-    ctx: any,
-    data: Array<Number> = this.overviewService.mainList[
-      this.overviewService.graphMode
-    ]
-  ) {
+  createMainChart(ctx: any, data: Array<Number>, scaleX: Array<String>) {
+    console.log('creating main graph');
+    this.graphStatus = scaleX[scaleX.length - 1]
+      ? 'Last Transaction occure at ' + scaleX[scaleX.length - 1]
+      : 'Transaction not occure';
     var gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 450);
 
     gradient.addColorStop(0, 'rgba(7, 121, 228, 0.4)');
@@ -103,15 +177,17 @@ export class OverviewComponent implements OnInit {
     this.chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: data,
+        labels: scaleX,
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Total',
             data: data,
             // fill: false,
+
             backgroundColor: gradient,
             borderColor: '#0779e4',
             borderWidth: 1,
+            pointHitRadius: 20,
           },
         ],
       },
@@ -119,6 +195,7 @@ export class OverviewComponent implements OnInit {
         tooltips: {
           enabled: true,
         },
+
         responsive: true,
         elements: {
           line: {
@@ -136,6 +213,7 @@ export class OverviewComponent implements OnInit {
             {
               ticks: {
                 fontColor: 'rgba(0,0,0,0.5)',
+                beginAtZero: true,
               },
               gridLines: {
                 color: 'rgba(0,0,0,0.05)',
@@ -255,4 +333,40 @@ export class OverviewComponent implements OnInit {
       },
     });
   }
+
+  nFormatter(num: number): String {
+    var digits = 3;
+    var si = [
+      { value: 1, symbol: '' },
+      { value: 1e3, symbol: 'k' },
+      { value: 1e6, symbol: 'M' },
+      { value: 1e9, symbol: 'G' },
+      { value: 1e12, symbol: 'T' },
+      { value: 1e15, symbol: 'P' },
+      { value: 1e18, symbol: 'E' },
+    ];
+    var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var i;
+    for (i = si.length - 1; i > 0; i--) {
+      if (num >= si[i].value) {
+        break;
+      }
+    }
+    return (num / si[i].value).toFixed(digits).replace(rx, '$1') + si[i].symbol;
+  }
 }
+
+// query from conver timestring to date
+// select to_date(Split_part(transactiontime,' ' ,1),'MM-DD-YYYY') from transactions;
+// select to_date(Split_part(transactiontime,' ' ,1),'MM-DD-YYYY') as date,sum(amount) as amount from transactions group by date
+// select to_date(Split_part(transactiontime,' ' ,1),'MM-DD-YYYY') as date,sum(amount) as amount from transactions where isgenerated=true group by date
+
+//select * from (select to_date(Split_part(transactiontime,' ' ,1),'MM-DD-YYYY') as date,sum(amount) as amount from transactions where to_date( Split_part(transactiontime,' ',1),'MM-DD-YYYY')>current_date-10 group by date order by date) as temp
+//;
+
+// select date_part('month',date::date),amount from (select to_date(Split_part(transactiontime,' ' ,1),'MM-DD-YYYY') as date,sum(amount) as amount from transactions where to_date( Split_part(transactiontime,' ',1),'MM-DD-YYYY')
+//>= current_date - 10 group by date order by date) as temp
+//;
+
+// select min(date), date_part('month', date:: date) as time, sum(amount) from(select to_date(Split_part(transactiontime, ' ', 1), 'MM-DD-YYYY') as date, sum(amount) as amount from transactions where to_date(Split_part(transactiont
+// ime, ' ', 1), 'MM-DD-YYYY') >= current_date - 10 group by date order by date) as temp group by time;
