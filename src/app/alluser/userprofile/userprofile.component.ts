@@ -23,6 +23,7 @@ export class UserprofileComponent implements OnInit {
   selectedTransaction = 0;
 
   async ngOnInit() {
+    console.log(this.userService.selectedUser);
     this.generateQrCode();
     if (!this.userService.selectedUser) {
       this.router.navigate(['/Home/AllUsers/ListUsers'], {
@@ -50,13 +51,11 @@ export class UserprofileComponent implements OnInit {
 
   generateQrCode() {
     var canvas = document.getElementById('qrcode');
-    QRCode.toCanvas(
-      canvas,
-      'eyJhbGciOiJIUzI1NiIsInR5Y2Vzc1RvIjpbIioiXSwiaWF0IjoxNTk1NzY5ODgyLCJleHAiOjE1OTU3NzM0ODJ9.zwTFX0-A8ujaMPOm28YzJ6A1AtnvI6PlawE725j_V48',
-      function (error) {
-        if (error) console.error(error);
-        console.log('success!');
-      }
-    );
+    QRCode.toCanvas(canvas, this.userService.selectedUser.qrCode, function (
+      error
+    ) {
+      if (error) console.error(error);
+      console.log('success!');
+    });
   }
 }

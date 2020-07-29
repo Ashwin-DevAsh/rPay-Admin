@@ -48,9 +48,9 @@ export class TransactionsService {
         transactionid: this.allTransactions[i].transactionid,
         amount: this.allTransactions[i].amount + '.00',
         fromid:
-          (!this.allTransactions[i].isgenerated ? '+' : '') +
+          (!this.allTransactions[i].isgenerated ? '' : '') +
           this.allTransactions[i].fromid,
-        toid: '+' + this.allTransactions[i].toid,
+        toid: '' + this.allTransactions[i].toid,
         transactiontime: this.allTransactions[i].transactiontime,
       });
     }

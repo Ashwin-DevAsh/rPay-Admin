@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LoginService } from '../../login/LoginService';
 import { UserService } from '../UserService';
 import { transition } from '@angular/animations';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class UserTransactionsService {
       response = await axios.get(
         this.loginService.url +
           'getMyTransactions/' +
-          this.userService.selectedUser.number,
+          this.userService.selectedUser.id,
         {
           headers: { token: this.loginService.token },
         }
@@ -50,33 +51,42 @@ export class UserTransactionsService {
   }
 
   getNext(isMove = false): Array<any> {
+    console.log(
+      'qrcode = ',
+      new JwtHelperService().decodeToken(this.userService.selectedUser.qrCode)
+    );
     this.transactions = [];
     for (var i = this.allTransactions.length - 1; i >= 0; i--) {
+      console.log(
+        this.userService.selectedUser.id,
+        this.allTransactions[i].fromid,
+        i
+      );
       this.transactions.push({
         index: i + 1,
         name:
-          this.userService.selectedUser.number == this.allTransactions[i].fromid
+          this.userService.selectedUser.id == this.allTransactions[i].fromid
             ? this.allTransactions[i].toname
             : this.allTransactions[i].fromname,
         amount:
-          this.userService.selectedUser.number == this.allTransactions[i].fromid
+          this.userService.selectedUser.id == this.allTransactions[i].fromid
             ? '-' + this.allTransactions[i].amount + '.00'
             : '+' + this.allTransactions[i].amount + '.00',
         number:
-          this.userService.selectedUser.number == this.allTransactions[i].fromid
-            ? (this.allTransactions[i].isgenerated ? '' : '+') +
+          this.userService.selectedUser.id == this.allTransactions[i].fromid
+            ? (this.allTransactions[i].isgenerated ? '' : '') +
               this.allTransactions[i].toid
-            : (this.allTransactions[i].isgenerated ? '' : '+') +
+            : (this.allTransactions[i].isgenerated ? '' : '') +
               this.allTransactions[i].fromid,
         transactiontime: this.allTransactions[i].transactiontime,
         isSend:
-          this.userService.selectedUser.number ==
-          this.allTransactions[i].fromid,
+          this.userService.selectedUser.id == this.allTransactions[i].fromid,
         isGenerated: this.allTransactions[i].isgenerated,
         transactionid: this.allTransactions[i].transactionid,
       });
     }
 
+    console.log(this.transactions);
     return this.transactions;
   }
 }

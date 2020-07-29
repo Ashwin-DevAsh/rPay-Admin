@@ -65,6 +65,7 @@ export class UserService {
       i++
     ) {
       this.users.push({ ...this.allUsers[i], index: i + 1 });
+      console.log(this.allUsers[i]);
     }
     return this.users;
   }

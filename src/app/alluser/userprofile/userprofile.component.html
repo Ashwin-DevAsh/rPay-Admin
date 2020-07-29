@@ -75,7 +75,9 @@
             <h1>{{ item.name[0] }}</h1>
           </div>
           <div class="info-container">
-            <h5 class="name">{{ item.name }}</h5>
+            <h5 class="name">
+              {{ item.isGenerated ? "Added to wallet" : item.name }}
+            </h5>
             <h6 class="email">{{ item.number }}</h6>
           </div>
           <div
@@ -153,16 +155,16 @@
             <h6>
               To :
               {{
-                transactions[selectedTransaction].isSent
+                transactions[selectedTransaction].isSend
                   ? transactions[selectedTransaction].name
                   : userService.selectedUser.name
               }}
             </h6>
             <h4>
-              +{{
-                transactions[selectedTransaction].isSent
+              {{
+                transactions[selectedTransaction].isSend
                   ? transactions[selectedTransaction].number
-                  : userService.selectedUser.number
+                  : userService.selectedUser.id
               }}
             </h4>
           </div>
@@ -170,15 +172,15 @@
             <h6>
               From :
               {{
-                transactions[selectedTransaction].isSent
+                transactions[selectedTransaction].isSend
                   ? userService.selectedUser.name
                   : transactions[selectedTransaction].name
               }}
             </h6>
             <h4>
               {{
-                transactions[selectedTransaction].isSent
-                  ? userService.selectedUser.number
+                transactions[selectedTransaction].isSend
+                  ? userService.selectedUser.id
                   : transactions[selectedTransaction].number
               }}
             </h4>
