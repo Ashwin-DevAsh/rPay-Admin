@@ -13,7 +13,7 @@ export class OverviewComponent implements OnInit {
 
   chart: Chart;
 
-  interval = 'daily';
+  interval = 'hourly';
 
   isLoading = [];
 
@@ -58,7 +58,18 @@ export class OverviewComponent implements OnInit {
   }
 
   updatePaymentGraph = () => {
+    var graphContainer = document.getElementsByClassName('myChart-outer')[0];
+    document.getElementById('myChartPayments').remove();
+    graphContainer.innerHTML +=
+      '<canvas  id="myChartPayments" class="myChart" width="100%" height ="20px"><canvas>';
+
     var payemtsChart = document.getElementById('myChartPayments');
+
+    this.createMiniChart(
+      payemtsChart,
+      this.overviewService.transactionsVolume[this.interval].x,
+      0
+    );
     this.createMiniChart(
       payemtsChart,
       this.overviewService.transactionsVolume[this.interval].x,
@@ -67,6 +78,10 @@ export class OverviewComponent implements OnInit {
   };
 
   updateCashChart = () => {
+    var graphContainer = document.getElementsByClassName('myChart-outer')[1];
+    document.getElementById('myChartCashIn').remove();
+    graphContainer.innerHTML +=
+      '<canvas  id="myChartCashIn" class="myChart" width="100%" height ="20px"><canvas>';
     var cashInChart = document.getElementById('myChartCashIn');
     this.createMiniChart(
       cashInChart,
@@ -76,6 +91,10 @@ export class OverviewComponent implements OnInit {
   };
 
   updateTransactionChart = () => {
+    var graphContainer = document.getElementsByClassName('myChart-outer')[2];
+    document.getElementById('myChartTransactions').remove();
+    graphContainer.innerHTML +=
+      '<canvas  id="myChartTransactions" class="myChart" width="100%" height ="20px"><canvas>';
     var transactionsChart = document.getElementById('myChartTransactions');
     this.createMiniChart(
       transactionsChart,
@@ -85,6 +104,10 @@ export class OverviewComponent implements OnInit {
   };
 
   updateWithdrawChart = () => {
+    var graphContainer = document.getElementsByClassName('myChart-outer')[3];
+    document.getElementById('myChartWithdraw').remove();
+    graphContainer.innerHTML +=
+      '<canvas  id="myChartWithdraw" class="myChart" width="100%" height ="20px"><canvas>';
     var withdrawChart = document.getElementById('myChartWithdraw');
     this.createMiniChart(
       withdrawChart,
@@ -136,6 +159,13 @@ export class OverviewComponent implements OnInit {
       this.overviewService.graphTimeLine
     );
     this.overviewService.graphTimeLine = timeLine;
+    if (
+      this.overviewService.getDays() != 1 &&
+      this.overviewService.intervalMode == 3
+    ) {
+      this.interval = 'daily';
+      this.overviewService.intervalMode = 0;
+    }
     this.loadData();
   }
 
@@ -147,13 +177,10 @@ export class OverviewComponent implements OnInit {
   ];
 
   selectGraphMode(modeIndex: number) {
-    console.log(this.overviewService.graphMode);
-
     var temp = this.overviewService.graphMode;
     this.overviewService.graphMode = modeIndex;
     this.updateChartFunctions[modeIndex]();
     this.updateChartFunctions[temp]();
-
     this.updateMainGraph();
   }
 

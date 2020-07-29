@@ -11,8 +11,9 @@ import { StaticSymbol } from '@angular/compiler';
 export class OverviewService {
   constructor(private loginService: LoginService) {}
 
-  graphTimeLine: String = 'Past 7 Days';
+  graphTimeLine: String = 'Today';
   graphTimeLines: Array<String> = [
+    'Past 7 Days',
     'Past 30 Days',
     'Past 90 Days',
     'Past 1 Year',
@@ -20,8 +21,8 @@ export class OverviewService {
   ];
 
   graphMode = 0;
-  intervalMode = 0;
-  days = 7;
+  intervalMode = 3;
+  days = 1;
 
   transactionsVolume = new Stats();
   noTransactions = new Stats();
@@ -53,13 +54,15 @@ export class OverviewService {
           headers: { token: this.loginService.token },
         }
       );
+      console.log(response);
       var day: Array<any> = response.data.day.rows;
+      var hour: Array<any> = response.data.hour.rows;
       var week: Array<any> = response.data.week.rows;
       var month: Array<any> = response.data.month.rows;
 
       console.log(day);
       this.transactionsVolume.response = response.data;
-      this.addToList(this.transactionsVolume, [day, week, month]);
+      this.addToList(this.transactionsVolume, [day, week, month, hour]);
       console.log(this.transactionsVolume.daily);
     } catch (e) {
       response = { data: { err: e } };
@@ -79,7 +82,8 @@ export class OverviewService {
       var day: Array<any> = response.data.day.rows;
       var week: Array<any> = response.data.week.rows;
       var month: Array<any> = response.data.month.rows;
-      this.addToList(this.noTransactions, [day, week, month]);
+      var hour: Array<any> = response.data.hour.rows;
+      this.addToList(this.noTransactions, [day, week, month, hour]);
       this.noTransactions.response = response.data;
     } catch (e) {
       response = { data: { err: e } };
@@ -98,7 +102,8 @@ export class OverviewService {
       var day: Array<any> = response.data.day.rows;
       var week: Array<any> = response.data.week.rows;
       var month: Array<any> = response.data.month.rows;
-      this.addToList(this.generated, [day, week, month]);
+      var hour: Array<any> = response.data.hour.rows;
+      this.addToList(this.generated, [day, week, month, hour]);
       this.generated.response = response.data;
     } catch (e) {
       response = { data: { err: e } };
@@ -106,19 +111,29 @@ export class OverviewService {
   }
 
   addToList(stats: Stats, intervalList: Array<any>) {
-    var interval = ['daily', 'weekly', 'monthly'];
+    var interval = ['daily', 'weekly', 'monthly', 'hourly'];
     for (var j = 0; j < interval.length; j++) {
       for (var i = 0; i < intervalList[j].length; i++) {
         stats[interval[j]].x.push(intervalList[j][i].total);
         stats[interval[j]].fromDate.push(
-          new Date(intervalList[j][i]['fromdate']).toDateString()
+          j == 3
+            ? intervalList[j][i]['fromdate'].split('T')[1].substring(0, 5)
+            : new Date(intervalList[j][i]['fromdate']).toDateString()
         );
         stats[interval[j]].toDate.push(
-          new Date(intervalList[j][i]['todate']).toDateString()
+          j == 3
+            ? intervalList[j][i]['fromdate'].split('T')[1].substring(0, 5)
+            : new Date(intervalList[j][i]['todate']).toDateString()
         );
         stats[interval[j]].csvData.push({
-          fromDate: new Date(intervalList[j][i]['fromdate']).toDateString(),
-          toDate: new Date(intervalList[j][i]['todate']).toDateString(),
+          fromDate:
+            j == 3
+              ? intervalList[j][i]['fromdate'].split('T')[1].substring(0, 5)
+              : new Date(intervalList[j][i]['fromdate']).toDateString(),
+          toDate:
+            j == 3
+              ? intervalList[j][i]['fromdate'].split('T')[1].substring(0, 5)
+              : new Date(intervalList[j][i]['todate']).toDateString(),
           amount: intervalList[j][i].total,
         });
         stats[interval[j]].total += Number.parseFloat(intervalList[j][i].total);
@@ -126,8 +141,10 @@ export class OverviewService {
     }
   }
 
-  getDays() {
+  getDays(): number {
     switch (this.graphTimeLine) {
+      case 'Today':
+        return 1;
       case 'Past 7 Days':
         return 7;
       case 'Past 30 Days':
@@ -165,6 +182,13 @@ class Stats {
     csvData: [],
   };
   monthly = {
+    x: [],
+    fromDate: [],
+    toDate: [],
+    total: 0,
+    csvData: [],
+  };
+  hourly = {
     x: [],
     fromDate: [],
     toDate: [],

@@ -53,12 +53,6 @@
         <h3>RC</h3>
       </div>
       <h5>Transactions Volume</h5>
-      <canvas
-        class="myChart"
-        id="myChartPayments"
-        width="100%"
-        height="20px"
-      ></canvas>
       <img
         [class]="{
           'dropdown-icon': true,
@@ -67,6 +61,15 @@
         src="../../assets/dropdownblue.svg"
         alt=""
       />
+      <div class="myChart-outer">
+        <canvas
+          #mychart
+          class="myChart"
+          id="myChartPayments"
+          width="100%"
+          height="20px"
+        ></canvas>
+      </div>
     </div>
     <div
       [class]="{ card: true, 'card-selected': overviewService.graphMode == 1 }"
@@ -77,12 +80,14 @@
         <h3>RC</h3>
       </div>
       <h5>Amount Generated</h5>
-      <canvas
-        class="myChart"
-        id="myChartCashIn"
-        width="100%"
-        height="20px"
-      ></canvas>
+      <div class="myChart-outer">
+        <canvas
+          class="myChart"
+          id="myChartCashIn"
+          width="100%"
+          height="20px"
+        ></canvas>
+      </div>
 
       <img
         [class]="{
@@ -103,12 +108,15 @@
         </h2>
       </div>
       <h5>Number of Transactions</h5>
-      <canvas
-        class="myChart"
-        id="myChartTransactions"
-        width="100%"
-        height="20px"
-      ></canvas>
+      <div class="myChart-outer">
+        <canvas
+          class="myChart"
+          id="myChartTransactions"
+          width="100%"
+          height="20px"
+        ></canvas>
+      </div>
+
       <img
         [class]="{
           'dropdown-icon': true,
@@ -127,12 +135,14 @@
         <h3>RC</h3>
       </div>
       <h5>Withdraw Volume</h5>
-      <canvas
-        class="myChart"
-        id="myChartWithdraw"
-        width="100%"
-        height="20px"
-      ></canvas>
+      <div class="myChart-outer">
+        <canvas
+          class="myChart"
+          id="myChartWithdraw"
+          width="100%"
+          height="20px"
+        ></canvas>
+      </div>
       <img
         [class]="{
           'dropdown-icon': true,
@@ -147,6 +157,18 @@
   <div class="graph-container">
     <div class="topbar">
       <div class="intervals">
+        <div
+          (click)="
+            overviewService.getDays() == 1 && selectIntervalMode(3, 'hourly')
+          "
+          [class]="{
+            interval: true,
+            noClick: overviewService.getDays() != 1,
+            isInterval: overviewService.intervalMode == 3
+          }"
+        >
+          <h5>Hourly</h5>
+        </div>
         <div
           (click)="selectIntervalMode(0, 'daily')"
           [class]="{
