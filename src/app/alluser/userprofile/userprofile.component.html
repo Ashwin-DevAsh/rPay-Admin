@@ -96,7 +96,10 @@
       </div>
     </div>
     <div class="selected-transaction-outer">
-      <div *ngIf="!isLoading" class="selected-transaction-view">
+      <div
+        *ngIf="!isLoading && transactions.length > 0"
+        class="selected-transaction-view"
+      >
         <div class="header">
           <div
             [style]="{
