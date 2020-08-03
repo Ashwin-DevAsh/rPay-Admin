@@ -73,6 +73,12 @@
             class="avatar"
           >
             <h1>{{ item.name[0] }}</h1>
+            <img
+              [src]="userService.convertToURL(item.number)"
+              #profile
+              (load)="profile.style.visibility = 'visible'"
+              (error)="profile.style.visibility = 'hidden'"
+            />
           </div>
           <div class="info-container">
             <h5 class="name">
@@ -96,8 +102,16 @@
       </div>
     </div>
     <div class="selected-transaction-outer">
+      <div *ngIf="isSelectedTransactionLoading" class="spiner" id="mini">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+
       <div
-        *ngIf="!isLoading && transactions.length > 0"
+        *ngIf="
+          !isLoading && transactions.length > 0 && !isSelectedTransactionLoading
+        "
         class="selected-transaction-view"
       >
         <div class="header">
@@ -111,6 +125,16 @@
             class="avatar"
           >
             <h1>{{ transactions[selectedTransaction].name[0] }}</h1>
+            <img
+              [src]="
+                userService.convertToURL(
+                  transactions[selectedTransaction].number
+                )
+              "
+              #profile
+              (load)="profile.style.visibility = 'visible'"
+              (error)="profile.style.visibility = 'hidden'"
+            />
           </div>
 
           <h4 class="amount">

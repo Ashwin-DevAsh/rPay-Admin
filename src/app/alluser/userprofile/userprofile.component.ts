@@ -16,6 +16,7 @@ export class UserprofileComponent implements OnInit {
   ) {}
 
   isLoading = true;
+  isSelectedTransactionLoading = false;
   transactions = [];
   pageStatus = 'Showing 0 to 0 of 0';
   colors = this.userService.colors;
@@ -47,6 +48,10 @@ export class UserprofileComponent implements OnInit {
 
   selectTransaction(index: number) {
     this.selectedTransaction = index;
+    this.isSelectedTransactionLoading = true;
+    setTimeout(() => {
+      this.isSelectedTransactionLoading = false;
+    }, 600);
   }
 
   generateQrCode() {

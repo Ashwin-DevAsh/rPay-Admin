@@ -56,6 +56,10 @@ export class UserService {
     }
   }
 
+  convertToURL(id: String): String {
+    return `https://rec-wallet-profile-pictures.s3.us-east-2.amazonaws.com/${id}.jpg`;
+  }
+
   getNext(isMove = false): Array<any> {
     if (isMove) this.pageIndex += 1;
     this.users = [];

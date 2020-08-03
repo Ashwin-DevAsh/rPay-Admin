@@ -146,9 +146,20 @@ $primarycolorGradient: #0779e4;
       width: 50px;
       border-radius: 50%;
       display: flex;
+
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       align-items: center;
       justify-content: center;
       color: white;
+
+      img {
+        position: absolute;
+        height: 52px;
+        border-radius: 26px;
+
+        width: 52px;
+      }
       h1 {
         font-size: 2.5rem;
       }
