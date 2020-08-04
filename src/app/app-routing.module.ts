@@ -15,6 +15,8 @@ import { AddmerchantsComponent } from './addmerchants/addmerchants.component';
 import { AddadminsComponent } from './addadmins/addadmins.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ListusersComponent } from './alluser/listusers/listusers.component';
+import { ListmerchantsComponent } from './allmerchants/listmerchants/listmerchants.component';
+import { MerchantprofileComponent } from './allmerchants/merchantprofile/merchantprofile.component';
 
 const routes: Routes = [
   { path: 'Login', component: LoginComponent },
@@ -35,7 +37,15 @@ const routes: Routes = [
           { path: '**', redirectTo: 'ListUsers' },
         ],
       },
-      { path: 'AllMerchants', component: AllmerchantsComponent },
+      {
+        path: 'AllMerchants',
+        component: AllmerchantsComponent,
+        children: [
+          { path: 'ListMerchants', component: ListmerchantsComponent },
+          { path: 'MerchantProfile', component: MerchantprofileComponent },
+          { path: '**', redirectTo: 'ListMerchants' },
+        ],
+      },
       { path: 'AllAdmins', component: AlladminsComponent },
       { path: 'AddUsers', component: AdduserComponent },
       { path: 'AddMerchants', component: AddmerchantsComponent },

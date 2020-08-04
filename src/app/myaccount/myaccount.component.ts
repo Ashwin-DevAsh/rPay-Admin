@@ -3,13 +3,19 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-myaccount',
   templateUrl: './myaccount.component.html',
-  styleUrls: ['./myaccount.component.scss']
+  styleUrls: ['./myaccount.component.scss'],
 })
 export class MyaccountComponent implements OnInit {
+  isLoading = true;
 
-  constructor() { }
+  userName = localStorage.getItem('userName');
+  email = localStorage.getItem('email');
+  number =
+    localStorage.getItem('phoneNumber') != 'undefined'
+      ? localStorage.getItem('phoneNumber')
+      : '919551574355';
 
-  ngOnInit(): void {
-  }
+  constructor() {}
 
+  ngOnInit(): void {}
 }

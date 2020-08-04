@@ -1,0 +1,126 @@
+<div class="main-container">
+  <div *ngIf="!'isLoading'" class="spiner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <div class="merchant-container">
+    <div class="header">
+      <div class="input-containers">
+        <div class="search-inputs">
+          <input #query placeholder="Enter name or number" type="text" />
+        </div>
+        <!-- <div class="search-inputs">
+          <input placeholder="From" type="text" />
+        </div>
+        <div class="search-inputs">
+          <input placeholder="To" type="text" />
+        </div> -->
+      </div>
+      <button (click)="filter(query.value)">Search</button>
+    </div>
+
+    <div class="transactions-table">
+      <div class="transactions-heading transaction">
+        <div>
+          <h4>Store Name</h4>
+        </div>
+        <div>
+          <h4>Name</h4>
+        </div>
+        <div>
+          <h4>Email</h4>
+        </div>
+        <div>
+          <h4>Phone Number</h4>
+        </div>
+        <div class="status-heading">
+          <h4>Status</h4>
+        </div>
+      </div>
+      <div
+        class="transaction"
+        *ngFor="let item of merchants; let index = index"
+        [class]="{ odd: index % 2 != 0 }"
+      >
+        <div (click)="openMerchantProfile(item)">
+          <div
+            [style]="{ background: colors[index % colors.length] }"
+            class="avatar"
+          >
+            <h1>{{ item.name[0] }}</h1>
+            <img
+              [src]=""
+              #profile
+              (load)="profile.style.visibility = 'visible'"
+              (error)="profile.style.visibility = 'hidden'"
+            />
+          </div>
+          <h4 style="color: #0779e4;">{{ item.name }}</h4>
+        </div>
+        <div (click)="openMerchantProfile(item)">
+          <h4>{{ "Ashwin" }}</h4>
+          <h6></h6>
+        </div>
+        <div (click)="openMerchantProfile(item)">
+          <h4>{{ item.email }}</h4>
+        </div>
+        <div (click)="openMerchantProfile(item)">
+          <h4>+{{ item.number }}</h4>
+        </div>
+        <div>
+          <div
+            (click)="item.status = 'Active'"
+            [class]="{ active: item.status == 'Active', status: true }"
+          >
+            <h4>{{ "Active" }}</h4>
+          </div>
+          <div
+            (click)="item.status = 'InActive'"
+            [class]="{ inActive: item.status == 'InActive', status: true }"
+          >
+            <h4>{{ "Inactive" }}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div>
+          <h6>
+            {{ pageStatus }}
+          </h6>
+        </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li
+              (click)="nav(false)"
+              class="page-item"
+              *ngIf="merchants[0].index != 1"
+            >
+              <a
+                class="page-link"
+                style="cursor: pointer;"
+                aria-label="Previous"
+              >
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li
+              (click)="nav()"
+              class="page-item"
+              *ngIf="
+                merchants[merchants.length - 1].index !=
+                userService.allUsers.length
+              "
+            >
+              <a class="page-link" style="cursor: pointer;" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
