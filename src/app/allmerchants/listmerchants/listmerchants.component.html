@@ -61,13 +61,15 @@
             (click)="item.status = 'Active'"
             [class]="{ active: item.status == 'Active', status: true }"
           >
-            <h4>{{ "Active" }}</h4>
+            <h4>{{ item.status == "Active" ? "Active" : "Make Active" }}</h4>
           </div>
           <div
             (click)="item.status = 'InActive'"
             [class]="{ inActive: item.status == 'InActive', status: true }"
           >
-            <h4>{{ "Inactive" }}</h4>
+            <h4>
+              {{ item.status == "InActive" ? "InActive" : "Make Inactive" }}
+            </h4>
           </div>
         </div>
       </div>

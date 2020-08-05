@@ -107,6 +107,14 @@
       </div>
 
       <div
+        [ngClass]="{ options: true, selected: isCurrentPage('AddUsers') }"
+        (click)="selectPage('AddUsers')"
+      >
+        <img src="../../assets/withdraw1.svg" alt="" />
+        <h4>Withdarw request</h4>
+      </div>
+
+      <div
         [ngClass]="{ options: true, selected: isCurrentPage('AddAdmins') }"
         (click)="selectPage('AddAdmins')"
       >
