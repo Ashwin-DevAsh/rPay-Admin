@@ -44,22 +44,10 @@
         [class]="{ odd: index % 2 != 0 }"
       >
         <div (click)="openMerchantProfile(item)">
-          <div
-            [style]="{ background: colors[index % colors.length] }"
-            class="avatar"
-          >
-            <h1>{{ item.name[0] }}</h1>
-            <img
-              [src]=""
-              #profile
-              (load)="profile.style.visibility = 'visible'"
-              (error)="profile.style.visibility = 'hidden'"
-            />
-          </div>
-          <h4 style="color: #0779e4;">{{ item.name }}</h4>
+          <h4 style="color: #0779e4;">{{ item.storeName }}</h4>
         </div>
         <div (click)="openMerchantProfile(item)">
-          <h4>{{ "Ashwin" }}</h4>
+          <h4>{{ item.name }}</h4>
           <h6></h6>
         </div>
         <div (click)="openMerchantProfile(item)">
