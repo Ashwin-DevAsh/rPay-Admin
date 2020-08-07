@@ -7,7 +7,7 @@
   <div class="banner">
     <div class="background-pattern"></div>
     <div class="background-pattern2"></div>
-    <img class="onbording" src="../../assets/node_banner.svg" alt="" />
+    <img class="onbording" src="../../assets/smart_collect.svg" alt="" />
   </div>
   <div class="merchant-container">
     <div class="header">
@@ -22,19 +22,25 @@
           <input placeholder="To" type="text" />
         </div> -->
       </div>
-      <button (click)="('filter(query.value)')">Search</button>
+      <div>
+        <button style="margin-right: 20px;" (click)="('filter(query.value)')">
+          Search
+        </button>
+        <button style="background-color: red;" (click)="addAdmin = true">
+          Add Admin
+        </button>
+      </div>
     </div>
-
     <div class="transactions-table">
       <div class="transactions-heading transaction">
         <div>
-          <h4>ID</h4>
+          <h4>Node ID</h4>
         </div>
         <div>
           <h4>Network ID</h4>
         </div>
         <div>
-          <h4>Node ID</h4>
+          <h4>Token ID</h4>
         </div>
         <div class="status-heading">
           <h4>Status</h4>
@@ -45,46 +51,46 @@
       </div>
       <div
         class="transaction"
-        *ngFor="let item of nodes; let index = index"
+        *ngFor="let item of []; let index = index"
         [class]="{ odd: index % 2 != 0 }"
       >
         <div>
           <h4 style="color: #0779e4;">{{ item.id }}</h4>
         </div>
         <div>
-          <h4>{{ item.socketid || "None" }}</h4>
+          <h4>{{ item.tokenID }}</h4>
           <h6></h6>
         </div>
         <div>
-          <h4>{{ item.fcmtoken }}</h4>
+          <h4>{{ item.networkID }}</h4>
         </div>
         <div style="justify-self: center;">
           <div
             [class]="{
               status: true,
-              online: item.isonline,
-              offline: !item.isonline
+              online: item.status == 'Online',
+              offline: item.status == 'Offline'
             }"
           >
-            <h4>{{ item.isonline ? "Online" : "offline" }}</h4>
+            <h4>{{ item.status }}</h4>
           </div>
         </div>
         <div>
-          <h4>{{ "100%" }}</h4>
+          <h4>{{ item.data }}</h4>
         </div>
       </div>
       <div class="footer">
         <div>
           <h6>
-            {{ pageStatus }}
+            {{ "pageStatus" }}
           </h6>
         </div>
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li
-              (click)="nav(false)"
+              (click)="('nav(false)')"
               class="page-item"
-              *ngIf="nodes[0].index != 1"
+              *ngIf="'merchants[0].index != 1'"
             >
               <a
                 class="page-link"
@@ -95,7 +101,7 @@
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li (click)="nav()" class="page-item" *ngIf="true">
+            <li (click)="('nav()')" class="page-item" *ngIf="true">
               <a class="page-link" style="cursor: pointer;" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
@@ -104,6 +110,36 @@
           </ul>
         </nav>
       </div>
+    </div>
+  </div>
+  <div [class]="{ container: true, addAdmin: addAdmin }">
+    <!-- <img class="background" src="../../assets/cool-background.svg" alt="" /> -->
+
+    <div class="form">
+      <div (click)="addAdmin = false" class="close">
+        <img src="../../../assets/close.svg" alt="" />
+      </div>
+      <div class="logo">
+        <img src="../../assets/RLogo (5).png" alt="" />
+        <h2>pay</h2>
+      </div>
+      <div class="input-field">
+        <h5>UserName</h5>
+        <input placeholder="UserName" />
+      </div>
+      <div class="input-field" style="margin-top: 30px;">
+        <h5>Email</h5>
+        <input placeholder="Email" />
+      </div>
+      <div class="input-field" style="margin-top: 30px;">
+        <h5>Number</h5>
+        <input placeholder="PhoneNumber" />
+      </div>
+      <div class="input-field" style="margin-top: 30px; margin-bottom: 50px;">
+        <h5>Password</h5>
+        <input type="password" placeholder="Password" />
+      </div>
+      <button>Create Account</button>
     </div>
   </div>
 </div>

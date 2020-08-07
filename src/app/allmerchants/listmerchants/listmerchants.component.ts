@@ -16,32 +16,14 @@ export class ListmerchantsComponent implements OnInit {
   ) {}
 
   isLoading = true;
-  merchants = [
-    {
-      storeName: 'hut cafe',
-      name: 'Akilan',
-      imageURL: '',
-      email: '2017ashwin@gmail.com',
-      index: 0,
-      status: 'InActive',
-      number: '919551574355',
-    },
-    {
-      storeName: 'Tamil Cafe',
-      name: 'Ashwin',
-      imageURL: '',
-      email: '2017ashwin@gmail.com',
-      index: 2,
-      status: 'Active',
-      number: '919551574355',
-    },
-  ];
+  merchants = [];
   colors = this.userService.colors;
   pageStatus = 'Showing 0 to 0 of 0';
 
   async ngOnInit() {
-    // await this.merchantService.getMerchants();
-    // this.merchants = this.merchantService.getNext(false);
+    this.isLoading = true;
+    await this.merchantService.getMerchants();
+    this.merchants = this.merchantService.getNext(false);
     this.pageStatus = `Showing ${this.merchants[0].index} to ${
       this.merchants[this.merchants.length - 1].index
     } of ${this.merchantService.allMerchants.length}`;
@@ -75,5 +57,14 @@ export class ListmerchantsComponent implements OnInit {
     this.merchantService.selectedMerchant = item;
     localStorage.setItem('selectedMerchant', JSON.stringify(item));
     this.router.navigate(['/Home/AllMerchants/MerchantProfile']);
+  }
+
+  updateStatus(status: String, item: any) {
+    console.log(status);
+    this.merchantService.updateStatus(status, item.id).then((isUpdated) => {
+      if (isUpdated) {
+        item.status = status;
+      }
+    });
   }
 }

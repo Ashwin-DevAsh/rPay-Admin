@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div *ngIf="!'isLoading'" class="spiner">
+  <div *ngIf="isLoading" class="spiner">
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -58,17 +58,17 @@
         </div>
         <div>
           <div
-            (click)="item.status = 'Active'"
-            [class]="{ active: item.status == 'Active', status: true }"
+            (click)="updateStatus('active', item); item.status = 'active'"
+            [class]="{ active: item.status == 'active', status: true }"
           >
-            <h4>{{ item.status == "Active" ? "Active" : "Make Active" }}</h4>
+            <h4>{{ item.status == "active" ? "Active" : "Make Active" }}</h4>
           </div>
           <div
-            (click)="item.status = 'InActive'"
-            [class]="{ inActive: item.status == 'InActive', status: true }"
+            (click)="updateStatus('pending', item); item.status = 'pending'"
+            [class]="{ inActive: item.status == 'pending', status: true }"
           >
             <h4>
-              {{ item.status == "InActive" ? "InActive" : "Make Inactive" }}
+              {{ item.status == "pending" ? "InActive" : "Make Inactive" }}
             </h4>
           </div>
         </div>

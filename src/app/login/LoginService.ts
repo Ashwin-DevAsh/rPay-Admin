@@ -8,7 +8,7 @@ export class LoginService {
   constructor() {}
 
   public url: String =
-    'http://ubuntu@ec2-13-59-224-121.us-east-2.compute.amazonaws.com:4500/';
+    'http://ec2-18-222-251-129.us-east-2.compute.amazonaws.com:4500/';
   public endPoint: String = 'login';
   public userName: String = localStorage.getItem('userName');
   public email: String = localStorage.getItem('email');

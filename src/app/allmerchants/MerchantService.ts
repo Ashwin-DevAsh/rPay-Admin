@@ -12,7 +12,7 @@ export class MerchantService {
   allMerchantsTemp: Array<any> = [];
   merchants = [];
   pageIndex = 0;
-  selectedMerchant = JSON.parse(localStorage.getItem('selectedUser'));
+  selectedMerchant = JSON.parse(localStorage.getItem('selectedMerchant'));
 
   colors = [
     '#8bc34a',
@@ -87,5 +87,26 @@ export class MerchantService {
       this.merchants.push({ ...this.allMerchants[i], index: i + 1 });
     }
     return this.merchants;
+  }
+
+  async updateStatus(status: String, id: String): Promise<boolean> {
+    var response;
+    try {
+      response = await axios.post(
+        this.loginService.url + 'updateMerchantStatus',
+        {
+          id: id,
+          status,
+        }
+      );
+      console.log(response);
+      if (response.message == 'done') {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
 }

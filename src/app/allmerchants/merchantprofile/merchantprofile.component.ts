@@ -66,4 +66,5 @@ export class MerchantprofileComponent implements OnInit {
       return this.colorMap[number];
     }
   }
+
 }

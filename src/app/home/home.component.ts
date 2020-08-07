@@ -29,10 +29,10 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private loginService: LoginService) {}
 
   async ngOnInit() {
-    // if (!this.loginService.isSessionExist()) {
-    //   this.router.navigate(['Login'], { replaceUrl: true });
-    //   return;
-    // }
+    if (!this.loginService.isSessionExist()) {
+      this.router.navigate(['Login'], { replaceUrl: true });
+      return;
+    }
     this.userName = this.loginService.userName;
   }
 }

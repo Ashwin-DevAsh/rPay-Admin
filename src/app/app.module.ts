@@ -21,6 +21,7 @@ import { UserprofileComponent } from './alluser/userprofile/userprofile.componen
 import { ListusersComponent } from './alluser/listusers/listusers.component';
 import { ListmerchantsComponent } from './allmerchants/listmerchants/listmerchants.component';
 import { MerchantprofileComponent } from './allmerchants/merchantprofile/merchantprofile.component';
+import { ListadminsComponent } from './alladmins/listadmins/listadmins.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MerchantprofileComponent } from './allmerchants/merchantprofile/merchan
     ListusersComponent,
     ListmerchantsComponent,
     MerchantprofileComponent,
+    ListadminsComponent,
   ],
   imports: [
     BrowserModule,

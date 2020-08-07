@@ -42,6 +42,8 @@ export class MerchantTransactionService {
     console.log(response);
   }
 
+
+
   numberWithCommas(x: string) {
     try {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
