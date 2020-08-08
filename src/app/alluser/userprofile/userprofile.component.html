@@ -83,12 +83,15 @@
               merchantAvatar: item.number.includes('rbusiness')
             }"
           >
-            <h1>{{ item.name[0] }}</h1>
+            <h1 #avatarText>{{ item.name[0] }}</h1>
             <img
               [class]="{ merchant: item.number.includes('rbusiness') }"
               [src]="userService.convertToURL(item.number)"
               #profile
-              (load)="profile.style.visibility = 'visible'"
+              (load)="
+                profile.style.visibility = 'visible';
+                avatarText.style.color = '#02335E'
+              "
               (error)="profile.style.visibility = 'hidden'"
             />
           </div>
@@ -145,7 +148,7 @@
               )
             }"
           >
-            <h1>{{ transactions[selectedTransaction].name[0] }}</h1>
+            <h1 #avatarText>{{ transactions[selectedTransaction].name[0] }}</h1>
             <img
               [class]="{
                 merchant: transactions[selectedTransaction].number.includes(
@@ -158,7 +161,10 @@
                 )
               "
               #profile
-              (load)="profile.style.visibility = 'visible'"
+              (load)="
+                profile.style.visibility = 'visible';
+                avatarText.style.color = '#02335E'
+              "
               (error)="profile.style.visibility = 'hidden'"
             />
           </div>
