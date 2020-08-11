@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionsService } from './TransactionsService';
 import { ExportToCsv } from 'export-to-csv';
+import { Router } from '@angular/router';
+import { UserService } from '../alluser/UserService';
 
 @Component({
   selector: 'app-transactions',
@@ -10,7 +12,11 @@ import { ExportToCsv } from 'export-to-csv';
 export class TransactionsComponent implements OnInit {
   pageStatus = 'Showing 0 to 0 of 0';
 
-  constructor(public transactionService: TransactionsService) {}
+  constructor(
+    public transactionService: TransactionsService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   transactions = [];
   isLoading = true;
@@ -63,5 +69,20 @@ export class TransactionsComponent implements OnInit {
     const csvExporter = new ExportToCsv(options);
     csvExporter.generateCsv(this.transactionService.allTransactions);
     this.isLoading = false;
+  }
+
+  openProfile(user: any) {
+    // console.log(user);
+    // this.userService.selectedUser = user;
+    // localStorage.setItem(
+    //   'selectedUser',
+    //   JSON.stringify({
+    //     id: user.Id,
+    //     name: user.Name,
+    //     number: user.Number,
+    //     email: user.Email,
+    //   })
+    // );
+    // this.router.navigate(['/Home/AllUsers/UserProfile']);
   }
 }

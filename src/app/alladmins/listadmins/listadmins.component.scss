@@ -296,6 +296,7 @@ $primarycolorGradient: #0779e4;
 }
 
 .close {
+  margin: 0 40px;
   opacity: 1;
 }
 
@@ -305,7 +306,7 @@ $primarycolorGradient: #0779e4;
   border-radius: 5px;
   position: relative;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-  padding: 50px;
+  padding: 50px 0;
   .divider {
     height: 1px;
     width: 100%;
@@ -325,12 +326,31 @@ $primarycolorGradient: #0779e4;
     border-radius: 20px;
     padding: 5px 30px;
     outline-width: 0;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     transition: all 0.5s ease;
+  }
+
+  .input-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 40px 0 40px;
+  }
+
+  input {
+    border-radius: 5px;
+    border: none;
+    border: solid 0.1px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    height: 45px;
+    padding: 0 20px;
+    outline-width: 0.01;
+    outline-color: rgba(3, 90, 166, 0.1);
   }
 }
 
 .logo {
+  margin: 0 40px;
   img {
     height: 30px;
     width: 30px;
@@ -352,26 +372,6 @@ $primarycolorGradient: #0779e4;
   right: 0px;
 }
 
-.input-field {
-  display: flex;
-  align-items: center;
-  h5 {
-    width: 150px;
-    margin-right: 40px;
-  }
-}
-
-input {
-  border-radius: 5px;
-  border: none;
-  width: 100%;
-  border: solid 0.1px rgba(0, 0, 0, 0.1);
-  transition: all 0.5s ease;
-  height: 45px;
-  padding: 0 20px;
-  outline-width: 0.01;
-  outline-color: rgba(3, 90, 166, 0.1);
-}
 h2 {
   margin-bottom: 50px;
 }
