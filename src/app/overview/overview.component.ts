@@ -140,6 +140,7 @@ export class OverviewComponent implements OnInit {
   downloadReport() {
     const options = {
       title: 'rpay-transactions',
+      useKeysAsHeaders: true,
       // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     const csvExporter = new ExportToCsv(options);

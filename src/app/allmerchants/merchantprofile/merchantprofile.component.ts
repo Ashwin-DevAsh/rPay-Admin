@@ -50,7 +50,7 @@ export class MerchantprofileComponent implements OnInit {
 
   generateQrCode() {
     var canvas = document.getElementById('qrcode');
-    QRCode.toCanvas(canvas, this.userService.selectedUser.qrCode, function (
+    QRCode.toCanvas(canvas, this.userService.selectedUser.qrcode, function (
       error
     ) {
       if (error) console.error(error);
@@ -66,5 +66,4 @@ export class MerchantprofileComponent implements OnInit {
       return this.colorMap[number];
     }
   }
-
 }

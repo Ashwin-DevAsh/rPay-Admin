@@ -20,9 +20,9 @@ export class TransactionsComponent implements OnInit {
   async ngOnInit() {
     await this.transactionService.getTransactions();
     this.transactions = this.transactionService.getNext();
-    this.pageStatus = `Showing ${this.transactions[0].transactionid} to ${
-      this.transactions[this.transactions.length - 1].transactionid
-    } of ${this.transactionService.allTransactions.length}`;
+    console.log(this.transactions[0].tometadata);
+
+    this.loadStatus();
 
     this.isLoading = false;
   }
@@ -41,8 +41,8 @@ export class TransactionsComponent implements OnInit {
   }
 
   loadStatus() {
-    this.pageStatus = `Showing ${this.transactions[0].transactionid} to ${
-      this.transactions[this.transactions.length - 1].transactionid
+    this.pageStatus = `Showing ${this.transactions[0].index} to ${
+      this.transactions[this.transactions.length - 1].index
     } of ${this.transactionService.allTransactions.length}`;
   }
 
@@ -57,6 +57,7 @@ export class TransactionsComponent implements OnInit {
     this.isLoading = true;
     const options = {
       title: 'rpay-transactions',
+      useKeysAsHeaders: true,
       // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     const csvExporter = new ExportToCsv(options);

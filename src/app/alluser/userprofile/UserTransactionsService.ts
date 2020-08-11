@@ -56,30 +56,26 @@ export class UserTransactionsService {
     );
     this.transactions = [];
     for (var i = this.allTransactions.length - 1; i >= 0; i--) {
-      console.log(
-        this.userService.selectedUser.id,
-        this.allTransactions[i].fromid,
-        i
-      );
       this.transactions.push({
         index: i + 1,
         name:
-          this.userService.selectedUser.id == this.allTransactions[i].fromid
-            ? this.allTransactions[i].toname
-            : this.allTransactions[i].fromname,
+          this.userService.selectedUser.id ==
+          this.allTransactions[i].frommetadata.Id
+            ? this.allTransactions[i].tometadata.Name
+            : this.allTransactions[i].frommetadata.Name,
         amount:
           this.userService.selectedUser.id == this.allTransactions[i].fromid
             ? '-' + this.allTransactions[i].amount + '.00'
             : '+' + this.allTransactions[i].amount + '.00',
         number:
-          this.userService.selectedUser.id == this.allTransactions[i].fromid
-            ? (this.allTransactions[i].isgenerated ? '' : '') +
-              this.allTransactions[i].toid
-            : (this.allTransactions[i].isgenerated ? '' : '') +
-              this.allTransactions[i].fromid,
+          this.userService.selectedUser.id ==
+          this.allTransactions[i].frommetadata.Id
+            ? this.allTransactions[i].tometadata.Id
+            : this.allTransactions[i].frommetadata.Id,
         transactiontime: this.allTransactions[i].transactiontime,
         isSend:
-          this.userService.selectedUser.id == this.allTransactions[i].fromid,
+          this.userService.selectedUser.id ==
+          this.allTransactions[i].frommetadata.Id,
         isGenerated: this.allTransactions[i].isgenerated,
         transactionid: this.allTransactions[i].transactionid,
       });

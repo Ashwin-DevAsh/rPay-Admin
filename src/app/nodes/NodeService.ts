@@ -28,7 +28,6 @@ export class NodeService {
       response = { data: { err: e } };
       this.allNodes = [];
     }
-    console.log(response);
   }
 
   filter(query: String) {

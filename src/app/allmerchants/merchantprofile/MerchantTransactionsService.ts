@@ -42,8 +42,6 @@ export class MerchantTransactionService {
     console.log(response);
   }
 
-
-
   numberWithCommas(x: string) {
     try {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -61,18 +59,13 @@ export class MerchantTransactionService {
     );
     this.transactions = [];
     for (var i = this.allTransactions.length - 1; i >= 0; i--) {
-      console.log(
-        this.merchantService.selectedMerchant.id,
-        this.allTransactions[i].fromid,
-        i
-      );
       this.transactions.push({
         index: i + 1,
         name:
           this.merchantService.selectedMerchant.id ==
-          this.allTransactions[i].fromid
-            ? this.allTransactions[i].toname
-            : this.allTransactions[i].fromname,
+          this.allTransactions[i].frommetadata.Id
+            ? this.allTransactions[i].tometadata.Name
+            : this.allTransactions[i].frommetadata.Name,
         amount:
           this.merchantService.selectedMerchant.id ==
           this.allTransactions[i].fromid
@@ -80,15 +73,13 @@ export class MerchantTransactionService {
             : '+' + this.allTransactions[i].amount + '.00',
         number:
           this.merchantService.selectedMerchant.id ==
-          this.allTransactions[i].fromid
-            ? (this.allTransactions[i].isgenerated ? '' : '') +
-              this.allTransactions[i].toid
-            : (this.allTransactions[i].isgenerated ? '' : '') +
-              this.allTransactions[i].fromid,
+          this.allTransactions[i].frommetadata.Id
+            ? this.allTransactions[i].tometadata.Id
+            : this.allTransactions[i].frommetadata.Id,
         transactiontime: this.allTransactions[i].transactiontime,
         isSend:
           this.merchantService.selectedMerchant.id ==
-          this.allTransactions[i].fromid,
+          this.allTransactions[i].frommetadata.Id,
         isGenerated: this.allTransactions[i].isgenerated,
         transactionid: this.allTransactions[i].transactionid,
       });

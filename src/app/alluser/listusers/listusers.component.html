@@ -30,9 +30,16 @@
           [style]="{ background: colors[index % colors.length] }"
           class="avatar"
         >
-          <h1>{{ item.name[0] }}</h1>
-
-          <img *ngIf="item.imageURL" [src]="item.imageURL" alt="" />
+          <h1 #avatarText>{{ item.name[0] }}</h1>
+          <img
+            [src]="userService.convertToURL(item.id)"
+            #profile
+            (load)="
+              profile.style.visibility = 'visible';
+              avatarText.style.color = '#02335E'
+            "
+            (error)="profile.style.visibility = 'hidden'"
+          />
         </div>
 
         <div class="info-container">

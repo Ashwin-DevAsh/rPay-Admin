@@ -28,7 +28,6 @@ export class TransactionsService {
       this.allTransactions = [];
       this.allTransactionsTemp = [];
     }
-    console.log(response);
   }
 
   getNext(isMove = false): Array<any> {
@@ -47,10 +46,8 @@ export class TransactionsService {
         index: i + 1,
         transactionid: this.allTransactions[i].transactionid,
         amount: this.allTransactions[i].amount + '.00',
-        fromid:
-          (!this.allTransactions[i].isgenerated ? '' : '') +
-          this.allTransactions[i].fromid,
-        toid: '' + this.allTransactions[i].toid,
+        frommetadata: this.allTransactions[i].frommetadata,
+        tometadata: this.allTransactions[i].tometadata,
         transactiontime: this.allTransactions[i].transactiontime,
       });
     }
@@ -69,8 +66,8 @@ export class TransactionsService {
         index: i + 1,
         transactionid: this.allTransactions[i].transactionid,
         amount: this.allTransactions[i].amount + '.00',
-        fromid: '+' + this.allTransactions[i].fromid,
-        toid: '+' + this.allTransactions[i].toid,
+        frommetadata: this.allTransactions[i].frommetadata,
+        tometadata: this.allTransactions[i].tometadata,
         transactiontime: this.allTransactions[i].transactiontime,
       });
     }
@@ -89,12 +86,19 @@ export class TransactionsService {
       this.allTransactions = [];
       return;
     }
-    if (index > this.allTransactionsTemp.length) {
-      this.allTransactions = [];
-      return;
-    }
+
     console.log(index);
     this.allTransactions = [];
-    this.allTransactions.push(this.allTransactionsTemp[index - 1]);
+
+    for (var i = 0; i < this.allTransactionsTemp.length; i++) {
+      console.log(i, this.allTransactionsTemp[i].transactionid);
+      try {
+        if (
+          Number.parseInt(this.allTransactionsTemp[i].transactionid) === index
+        ) {
+          this.allTransactions.push(this.allTransactionsTemp[i]);
+        }
+      } catch {}
+    }
   }
 }

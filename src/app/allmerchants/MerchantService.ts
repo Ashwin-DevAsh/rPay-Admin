@@ -33,6 +33,8 @@ export class MerchantService {
         headers: { token: this.loginService.token },
       });
 
+      console.log(response);
+
       this.allMerchants = response.data;
       this.allMerchantsTemp = response.data;
       console.log(this.allMerchants);
@@ -97,6 +99,9 @@ export class MerchantService {
         {
           id: id,
           status,
+        },
+        {
+          headers: { token: this.loginService.token },
         }
       );
       console.log(response);

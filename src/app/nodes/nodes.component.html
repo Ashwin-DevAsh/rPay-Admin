@@ -33,14 +33,14 @@
         <div>
           <h4>Network ID</h4>
         </div>
-        <div>
-          <h4>Node ID</h4>
-        </div>
         <div class="status-heading">
           <h4>Status</h4>
         </div>
-        <div>
+        <div class="options-heading">
           <h4>Data</h4>
+        </div>
+        <div class="options-heading">
+          <h4>Options</h4>
         </div>
       </div>
       <div
@@ -55,9 +55,6 @@
           <h4>{{ item.socketid || "None" }}</h4>
           <h6></h6>
         </div>
-        <div>
-          <h4>{{ item.fcmtoken }}</h4>
-        </div>
         <div style="justify-self: center;">
           <div
             [class]="{
@@ -69,10 +66,17 @@
             <h4>{{ item.isonline ? "Online" : "offline" }}</h4>
           </div>
         </div>
-        <div>
+        <div class="options-heading">
           <h4>{{ "100%" }}</h4>
         </div>
+        <div class="options">
+          <img src="../../assets/compare.svg" alt="" />
+          <img src="../../assets/settings.svg" alt="" />
+
+          <img src="../../assets/downloaddata.svg" alt="" />
+        </div>
       </div>
+
       <div class="footer">
         <div>
           <h6>
@@ -95,7 +99,13 @@
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li (click)="nav()" class="page-item" *ngIf="true">
+            <li
+              (click)="nav()"
+              class="page-item"
+              *ngIf="
+                nodes[nodes.length - 1].index != nodeService.allNodes.length
+              "
+            >
               <a class="page-link" style="cursor: pointer;" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>

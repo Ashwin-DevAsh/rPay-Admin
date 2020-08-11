@@ -125,6 +125,7 @@ $primarycolorGradient: #0779e4;
       h6 {
         font-size: 1.3rem;
         opacity: 0.7;
+        max-lines: 1;
         margin-left: 3px;
       }
     }
@@ -133,10 +134,8 @@ $primarycolorGradient: #0779e4;
     display: grid;
     width: 100%;
     cursor: pointer;
-    grid-template-columns: 22.5% 20% 32.5% 15% 10%;
-    div {
-      overflow: scroll;
-    }
+    grid-template-columns: 20% 20% 20% 20% 20%;
+
     h4 {
       max-lines: 10;
       font-weight: 500;
@@ -176,7 +175,27 @@ $primarycolorGradient: #0779e4;
     align-self: center;
     padding: 5px;
     height: 25px;
-    border-radius: 10px;
+    border-radius: 12.5px;
+  }
+
+  .options-heading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .options {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      opacity: 0.8;
+
+      margin: 0 20px;
+      height: 16px;
+    }
   }
 
   .online {
@@ -277,7 +296,7 @@ $primarycolorGradient: #0779e4;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .transactions-table {
     border-top: solid 0.1px rgba($color: #000000, $alpha: 0.1);
 
