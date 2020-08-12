@@ -1,5 +1,5 @@
 <div class="main-container">
-  <div *ngIf="!'isLoading'" class="spiner">
+  <div *ngIf="isLoading" class="spiner">
     <div class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>
     </div>
@@ -25,58 +25,53 @@
       <button (click)="('filter(query.value)')">Search</button>
     </div>
 
-    <!-- <div class="transactions-table">
+    <div class="transactions-table">
       <div class="transactions-heading transaction">
         <div>
-          <h4>Node ID</h4>
+          <h4>Block ID</h4>
         </div>
         <div>
-          <h4>Network ID</h4>
+          <h4>Referance ID</h4>
         </div>
         <div>
-          <h4>Token ID</h4>
-        </div>
-        <div class="status-heading">
-          <h4>Status</h4>
+          <h4>Prev. Hash</h4>
         </div>
         <div>
-          <h4>Data</h4>
+          <h4>Verified By</h4>
+        </div>
+        <div>
+          <h4>Timestamp</h4>
         </div>
       </div>
+
       <div
         class="transaction"
-        *ngFor="let item of []; let index = index"
+        *ngFor="let item of blocks; let index = index"
         [class]="{ odd: index % 2 != 0 }"
       >
         <div>
-          <h4 style="color: #0779e4;">{{ item.id }}</h4>
+          <h4 style="color: #0779e4;">{{ item.blockid }}</h4>
         </div>
         <div>
-          <h4>{{ item.tokenID }}</h4>
+          <h4>{{ item.type }}</h4>
           <h6></h6>
         </div>
         <div>
-          <h4>{{ item.networkID }}</h4>
+          <h4>{{ item.data.prevHash }}</h4>
         </div>
-        <div style="justify-self: center;">
-          <div
-            [class]="{
-              status: true,
-              online: item.status == 'Online',
-              offline: item.status == 'Offline'
-            }"
-          >
-            <h4>{{ item.status }}</h4>
+        <div>
+          <div>
+            <h4>{{ item.verifiedby }}</h4>
           </div>
         </div>
         <div>
-          <h4>{{ item.data }}</h4>
+          <h4>{{ item.timestamp }}</h4>
         </div>
       </div>
       <div class="footer">
         <div>
           <h6>
-            {{ "pageStatus" }}
+            {{ pageStatus }}
           </h6>
         </div>
         <nav aria-label="Page navigation example">
@@ -104,6 +99,6 @@
           </ul>
         </nav>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>

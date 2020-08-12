@@ -244,6 +244,15 @@ $primarycolorGradient: #0779e4;
 }
 @media (max-width: 500px) {
   .transactions-table {
+    .more-info-open {
+      .from,
+      .to {
+        flex-direction: column;
+      }
+      h4 {
+        margin-top: 20px;
+      }
+    }
     .transaction {
       grid-template-columns: 60% 40%;
       row-gap: 20px;
