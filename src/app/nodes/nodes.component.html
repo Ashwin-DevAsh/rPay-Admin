@@ -13,7 +13,30 @@
     <div class="header">
       <div class="input-containers">
         <div class="search-inputs">
-          <input #query placeholder="Enter name or number" type="text" />
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <div style="display: flex;">
+                <img
+                  class="dropdown-image"
+                  src="../../assets/dropdown.svg"
+                  alt=""
+                />
+              </div>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-item">
+                {{ "Node ID" }}
+              </div>
+            </div>
+          </div>
+          <input #query placeholder="Node ID" type="text" />
         </div>
         <!-- <div class="search-inputs">
           <input placeholder="From" type="text" />

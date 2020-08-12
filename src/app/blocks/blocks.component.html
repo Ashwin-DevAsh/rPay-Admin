@@ -13,7 +13,30 @@
     <div class="header">
       <div class="input-containers">
         <div class="search-inputs">
-          <input #query placeholder="Enter name or number" type="text" />
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <div style="display: flex;">
+                <img
+                  class="dropdown-image"
+                  src="../../assets/dropdown.svg"
+                  alt=""
+                />
+              </div>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div class="dropdown-item">
+                {{ "Block ID" }}
+              </div>
+            </div>
+          </div>
+          <input #query placeholder="Block ID" type="text" />
         </div>
         <!-- <div class="search-inputs">
           <input placeholder="From" type="text" />
@@ -31,7 +54,7 @@
           <h4>Block ID</h4>
         </div>
         <div>
-          <h4>Referance ID</h4>
+          <h4>Type</h4>
         </div>
         <div>
           <h4>Prev. Hash</h4>
@@ -52,7 +75,14 @@
         <div>
           <h4 style="color: #0779e4;">{{ item.blockid }}</h4>
         </div>
-        <div>
+        <div
+          [class]="{
+            newUser: item.type == 'New User',
+            amountGenerated: item.type == 'Amount Generated',
+            transactions: item.type == 'Transaction',
+            withdraw: item.type == 'withdraw'
+          }"
+        >
           <h4>{{ item.type }}</h4>
           <h6></h6>
         </div>

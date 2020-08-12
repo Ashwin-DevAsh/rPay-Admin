@@ -32,12 +32,8 @@ export class MerchantService {
       response = await axios.get(this.loginService.url + 'getMerchants', {
         headers: { token: this.loginService.token },
       });
-
-      console.log(response);
-
       this.allMerchants = response.data;
       this.allMerchantsTemp = response.data;
-      console.log(this.allMerchants);
     } catch (e) {
       response = { data: { err: e } };
       this.allMerchants = [];

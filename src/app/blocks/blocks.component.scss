@@ -141,58 +141,64 @@ $primarycolorGradient: #0779e4;
     }
   }
 
-  .avatar {
-    height: 40px;
-    margin-right: 20px;
-    width: 40px;
-    background-color: rgba($color: $primarycolor, $alpha: 1);
-    border-radius: 50%;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-
-    align-items: center;
-    justify-content: center;
-    color: white;
-    img {
-      position: absolute;
-      height: 42px;
-      border-radius: 50%;
-      width: 42px;
-    }
-    h1 {
-      font-size: 2.5rem;
-    }
-  }
-
-  .status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    padding: 5px;
-    height: 25px;
-    border-radius: 10px;
-  }
-
-  .online {
+  .newUser {
     width: 100px;
     opacity: 1;
+    display: flex;
+    align-items: center;
     color: green;
+    border-radius: 20px;
     background-color: rgba($color: green, $alpha: 0.1);
     h4 {
+      padding: 5px 10px;
+      margin: auto;
       font-size: 1.2rem;
     }
   }
 
-  .offline {
-    width: 100px;
+  .amountGenerated {
+    width: 160px;
     opacity: 1;
+    display: flex;
+    align-items: center;
+    color: orangered;
+    border-radius: 20px;
+    background-color: rgba($color: orangered, $alpha: 0.1);
     h4 {
+      padding: 5px 5px;
+      margin: auto;
       font-size: 1.2rem;
     }
+  }
+
+  .transactions {
+    width: 140px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    color: purple;
+    border-radius: 20px;
+    background-color: rgba($color: purple, $alpha: 0.1);
+    h4 {
+      padding: 5px 5px;
+      margin: auto;
+      font-size: 1.2rem;
+    }
+  }
+
+  .withdraw {
+    width: 140px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
     color: red;
+    border-radius: 20px;
     background-color: rgba($color: red, $alpha: 0.1);
+    h4 {
+      padding: 5px 5px;
+      margin: auto;
+      font-size: 1.2rem;
+    }
   }
 
   .status-heading {
@@ -217,21 +223,59 @@ $primarycolorGradient: #0779e4;
 
 .search-inputs {
   margin-right: 40px;
+  display: flex;
   h4 {
     font-size: 1.5rem;
     opacity: 0.7;
   }
   input {
-    border-radius: 5px;
-    border: none;
-    width: 200%;
+    border-radius: 1px;
+    border: solid 0.1px rgba(3, 90, 166, 0.1);
+    width: 400px;
     background-color: rgba(3, 90, 166, 0.05);
-    transition: all 0.5s ease;
+
     height: 40px;
     padding: 0 20px;
     margin-top: 10px;
     outline-width: 0.01;
     outline-color: rgba(3, 90, 166, 0.1);
+  }
+  .dropdown {
+    button {
+      color: black;
+      border: solid 0.1px rgba(3, 90, 166, 0.1);
+      background-color: rgba(3, 90, 166, 0.05);
+    }
+
+    button {
+      padding-left: 20px;
+      padding-right: 20px;
+      img {
+        margin: 0;
+      }
+      h5 {
+        display: none;
+      }
+    }
+
+    .dropdown-menu {
+      margin-left: 20px;
+      border-radius: 2px;
+    }
+
+    .dropdown-item {
+      height: 30px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      justify-content: center;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      h5 {
+        opacity: 0.7;
+      }
+    }
   }
 }
 
@@ -299,6 +343,32 @@ $primarycolorGradient: #0779e4;
     display: flex;
     .transaction {
       border-right: none;
+      grid-template-columns: 100%;
+      row-gap: 20px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .search-inputs {
+    margin-right: 10px;
+    input {
+      width: 200px;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .search-inputs {
+    margin-right: 10px;
+    input {
+      width: 150px;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .transactions-table {
+    .transaction {
       grid-template-columns: 100%;
       row-gap: 20px;
     }

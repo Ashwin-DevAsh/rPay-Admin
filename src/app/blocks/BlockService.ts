@@ -56,7 +56,7 @@ export class BlockService {
       console.log(this.allBlocks[i]);
       this.blocks.push({
         ...this.allBlocks[i],
-        data: this.helper.decodeToken(this.allBlocks[i].blockhash),
+        data: this.helper.decodeToken(this.allBlocks[i].encrypteddata),
         index: i + 1,
       });
       console.log(this.allBlocks[i]);
@@ -74,7 +74,7 @@ export class BlockService {
     ) {
       this.blocks.push({
         ...this.allBlocks[i],
-        data: this.helper.decodeToken(this.allBlocks[i].blockhash),
+        data: this.helper.decodeToken(this.allBlocks[i].encrypteddata),
         index: i + 1,
       });
     }
