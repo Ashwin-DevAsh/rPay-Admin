@@ -105,11 +105,12 @@ $primarycolorGradient: #0779e4;
     }
 
     .dropdown-item {
-      height: 30px;
+      padding-left: 20px;
+      height: 40px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      justify-content: center;
+      justify-content: start;
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
@@ -150,8 +151,9 @@ $primarycolorGradient: #0779e4;
     justify-content: space-around;
 
     h4 {
+      color: red;
       padding: 10px 20px;
-      background-color: rgba($color: red, $alpha: 0.1);
+      background-color: rgba($color: red, $alpha: 0.05);
       border-radius: 20px;
     }
   }
@@ -164,8 +166,9 @@ $primarycolorGradient: #0779e4;
     justify-content: space-around;
 
     h4 {
+      color: green;
       padding: 10px 20px;
-      background-color: rgba($color: green, $alpha: 0.1);
+      background-color: rgba($color: green, $alpha: 0.05);
       border-radius: 20px;
     }
   }

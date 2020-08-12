@@ -11,6 +11,9 @@ import { UserService } from '../alluser/UserService';
 })
 export class TransactionsComponent implements OnInit {
   pageStatus = 'Showing 0 to 0 of 0';
+  searchMode = 'Transaction ID';
+
+  searchModes = ['Transaction ID', 'Number', 'Email', 'Name'];
 
   constructor(
     public transactionService: TransactionsService,
@@ -54,7 +57,27 @@ export class TransactionsComponent implements OnInit {
 
   filter(query: string) {
     console.log(query);
-    this.transactionService.filter(query);
+    switch (this.searchMode) {
+      case 'Transaction ID': {
+        this.transactionService.filterWithID(query);
+        break;
+      }
+
+      case 'Number': {
+        this.transactionService.filterWithNumber(query);
+        break;
+      }
+
+      case 'Name': {
+        this.transactionService.filterWithName(query);
+        break;
+      }
+
+      case 'Email': {
+        this.transactionService.filterWithEmail(query);
+        break;
+      }
+    }
     this.transactions = this.transactionService.getNext();
     this.pageStatus = `Showing ${this.transactionService.allTransactions.length} of ${this.transactionService.allTransactions.length}`;
   }
@@ -64,25 +87,9 @@ export class TransactionsComponent implements OnInit {
     const options = {
       title: 'rpay-transactions',
       useKeysAsHeaders: true,
-      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
     };
     const csvExporter = new ExportToCsv(options);
     csvExporter.generateCsv(this.transactionService.allTransactions);
     this.isLoading = false;
-  }
-
-  openProfile(user: any) {
-    // console.log(user);
-    // this.userService.selectedUser = user;
-    // localStorage.setItem(
-    //   'selectedUser',
-    //   JSON.stringify({
-    //     id: user.Id,
-    //     name: user.Name,
-    //     number: user.Number,
-    //     email: user.Email,
-    //   })
-    // );
-    // this.router.navigate(['/Home/AllUsers/UserProfile']);
   }
 }

@@ -26,12 +26,16 @@
               </div>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <div class="dropdown-item">
-                {{ "Transaction ID" }}
+              <div
+                (click)="searchMode = item"
+                class="dropdown-item"
+                *ngFor="let item of searchModes"
+              >
+                {{ item }}
               </div>
             </div>
           </div>
-          <input #query [placeholder]="'Transaction ID'" type="text" />
+          <input #query [placeholder]="searchMode" type="text" />
         </div>
         <!-- <div class="search-inputs">
           <input placeholder="From" type="text" />
@@ -82,13 +86,10 @@
             <h4>Rc. {{ item.amount }}</h4>
             <h6></h6>
           </div>
-          <div
-            style="cursor: pointer;"
-            (click)="openProfile(item.frommetadata)"
-          >
+          <div style="cursor: pointer;">
             <h4>{{ item.frommetadata.Id }}</h4>
           </div>
-          <div style="cursor: pointer;" (click)="openProfile(item.tometadata)">
+          <div style="cursor: pointer;">
             <h4>{{ item.tometadata.Id }}</h4>
           </div>
           <div>
