@@ -34,9 +34,7 @@ export class NodeService {
     this.pageIndex = 0;
     this.allNodes = [];
     for (var i = 0; i < this.allNodesTemp.length; i++) {
-      if (
-        this.allNodesTemp[i].name.toLowerCase().includes(query.toLowerCase())
-      ) {
+      if (this.allNodesTemp[i].id.toLowerCase().includes(query.toLowerCase())) {
         console.log(this.allNodesTemp[i]);
         this.allNodes.push(this.allNodesTemp[i]);
       }

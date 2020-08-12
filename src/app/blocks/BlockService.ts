@@ -37,7 +37,9 @@ export class BlockService {
     this.allBlocks = [];
     for (var i = 0; i < this.allBlocksTemp.length; i++) {
       if (
-        this.allBlocksTemp[i].name.toLowerCase().includes(query.toLowerCase())
+        this.allBlocksTemp[i].blockid
+          .toLowerCase()
+          .includes(query.toLowerCase())
       ) {
         console.log(this.allBlocksTemp[i]);
         this.allBlocks.push(this.allBlocksTemp[i]);
