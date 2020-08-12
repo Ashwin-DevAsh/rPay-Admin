@@ -92,6 +92,53 @@ $primarycolorGradient: #0779e4;
   margin-bottom: 70px;
   align-items: center;
   width: 95%;
+  .transaction-outer {
+    width: 100%;
+  }
+
+  .more-info {
+    border-bottom: solid 0.1px rgba($color: #000000, $alpha: 0.1);
+
+    display: none;
+    h4 {
+      font-weight: 500;
+      opacity: 0.8;
+      font-size: 1.3rem;
+    }
+  }
+
+  .from {
+    display: flex;
+    margin: 40px 100px 20px 100px;
+    align-items: center;
+    justify-content: space-around;
+
+    h4 {
+      padding: 10px 20px;
+      background-color: rgba($color: red, $alpha: 0.1);
+      border-radius: 20px;
+    }
+  }
+
+  .to {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    align-items: center;
+    justify-content: space-around;
+
+    h4 {
+      padding: 10px 20px;
+      background-color: rgba($color: green, $alpha: 0.1);
+      border-radius: 20px;
+    }
+  }
+
+  .more-info-open {
+    display: flex;
+    flex-direction: column;
+  }
+
   .transaction {
     div {
       margin-left: 10px;
@@ -105,10 +152,10 @@ $primarycolorGradient: #0779e4;
       }
     }
     padding: 15px 10px;
-    border-bottom: solid 0.1px rgba($color: #000000, $alpha: 0.1);
     display: grid;
     width: 100%;
     cursor: pointer;
+    border-bottom: solid 0.1px rgba($color: #000000, $alpha: 0.1);
     grid-template-columns: repeat(5, 20%);
     h4 {
       font-weight: 500;

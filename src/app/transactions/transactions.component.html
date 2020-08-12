@@ -44,25 +44,45 @@
         </div>
       </div>
       <div
-        class="transaction"
         *ngFor="let item of transactions; let index = index"
         [class]="{ odd: index % 2 != 0 }"
+        class="transaction-outer"
       >
-        <div>
-          <h4 style="color: #0779e4;">{{ item.transactionid }}</h4>
+        <div
+          class="transaction"
+          (click)="moreInfo.classList.toggle('more-info-open')"
+        >
+          <div>
+            <h4 style="color: #0779e4;">{{ item.transactionid }}</h4>
+          </div>
+          <div>
+            <h4>Rc. {{ item.amount }}</h4>
+            <h6></h6>
+          </div>
+          <div
+            style="cursor: pointer;"
+            (click)="openProfile(item.frommetadata)"
+          >
+            <h4>{{ item.frommetadata.Id }}</h4>
+          </div>
+          <div style="cursor: pointer;" (click)="openProfile(item.tometadata)">
+            <h4>{{ item.tometadata.Id }}</h4>
+          </div>
+          <div>
+            <h4>{{ item.transactiontime }}</h4>
+          </div>
         </div>
-        <div>
-          <h4>Rc. {{ item.amount }}</h4>
-          <h6></h6>
-        </div>
-        <div style="cursor: pointer;" (click)="openProfile(item.frommetadata)">
-          <h4>{{ item.frommetadata.Id }}</h4>
-        </div>
-        <div style="cursor: pointer;" (click)="openProfile(item.tometadata)">
-          <h4>{{ item.tometadata.Id }}</h4>
-        </div>
-        <div>
-          <h4>{{ item.transactiontime }}</h4>
+        <div #moreInfo class="more-info">
+          <div class="from">
+            <h4>{{ item.frommetadata.Name }}</h4>
+            <h4>{{ item.frommetadata.Email }}</h4>
+            <h4>{{ item.frommetadata.Number }}</h4>
+          </div>
+          <div class="to">
+            <h4>{{ item.tometadata.Name }}</h4>
+            <h4>{{ item.tometadata.Email }}</h4>
+            <h4>{{ item.tometadata.Number }}</h4>
+          </div>
         </div>
       </div>
     </div>
