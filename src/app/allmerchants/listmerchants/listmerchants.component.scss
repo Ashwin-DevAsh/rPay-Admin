@@ -218,11 +218,12 @@ $primarycolorGradient: #0779e4;
     }
 
     .dropdown-item {
-      height: 30px;
+      padding-left: 20px;
+      height: 40px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      justify-content: center;
+      justify-content: start;
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }

@@ -20,6 +20,10 @@ export class ListmerchantsComponent implements OnInit {
   colors = this.userService.colors;
   pageStatus = 'Showing 0 to 0 of 0';
 
+  searchMode = 'Name';
+
+  searchModes = ['Number', 'Email', 'Name', 'Store Name'];
+
   async ngOnInit() {
     this.isLoading = true;
     await this.merchantService.getMerchants();
@@ -32,7 +36,27 @@ export class ListmerchantsComponent implements OnInit {
 
   filter(query: String) {
     this.isLoading = true;
-    this.merchantService.filter(query);
+    switch (this.searchMode) {
+      case 'Number': {
+        this.merchantService.filterWithNumber(query);
+        break;
+      }
+
+      case 'Name': {
+        this.merchantService.filterWithName(query);
+        break;
+      }
+
+      case 'Email': {
+        this.merchantService.filterWithEmail(query);
+        break;
+      }
+
+      case 'Store Name': {
+        this.merchantService.filterWithStoreName(query);
+        break;
+      }
+    }
     this.merchants = this.merchantService.getNext();
     setTimeout(() => {
       this.isLoading = false;

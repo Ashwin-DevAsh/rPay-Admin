@@ -15,6 +15,10 @@ export class ListusersComponent implements OnInit {
   colors = this.userService.colors;
   pageStatus = 'Showing 0 to 0 of 0';
 
+  searchMode = 'Name';
+
+  searchModes = ['Number', 'Email', 'Name'];
+
   async ngOnInit() {
     await this.userService.getUsers();
     this.users = this.userService.getNext(false);
@@ -26,7 +30,22 @@ export class ListusersComponent implements OnInit {
 
   filter(query: String) {
     this.isLoading = true;
-    this.userService.filter(query);
+    switch (this.searchMode) {
+      case 'Number': {
+        this.userService.filterWithNumber(query);
+        break;
+      }
+
+      case 'Name': {
+        this.userService.filterWithName(query);
+        break;
+      }
+
+      case 'Email': {
+        this.userService.filterWithEmail(query);
+        break;
+      }
+    }
     this.users = this.userService.getNext();
     setTimeout(() => {
       this.isLoading = false;

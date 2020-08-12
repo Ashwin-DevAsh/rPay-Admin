@@ -41,7 +41,7 @@ export class MerchantService {
     console.log(response);
   }
 
-  filter(query: String) {
+  filterWithName(query: String) {
     this.pageIndex = 0;
     this.allMerchants = [];
     for (var i = 0; i < this.allMerchantsTemp.length; i++) {
@@ -51,6 +51,48 @@ export class MerchantService {
           .includes(query.toLowerCase())
       ) {
         console.log(this.allMerchantsTemp[i]);
+        this.allMerchants.push(this.allMerchantsTemp[i]);
+      }
+    }
+  }
+
+  filterWithNumber(query: String) {
+    this.pageIndex = 0;
+    this.allMerchants = [];
+    for (var i = 0; i < this.allMerchantsTemp.length; i++) {
+      if (
+        this.allMerchantsTemp[i].number
+          .toLowerCase()
+          .includes(query.toLowerCase())
+      ) {
+        this.allMerchants.push(this.allMerchantsTemp[i]);
+      }
+    }
+  }
+
+  filterWithEmail(query: String) {
+    this.pageIndex = 0;
+    this.allMerchants = [];
+    for (var i = 0; i < this.allMerchantsTemp.length; i++) {
+      if (
+        this.allMerchantsTemp[i].email
+          .toLowerCase()
+          .includes(query.toLowerCase())
+      ) {
+        this.allMerchants.push(this.allMerchantsTemp[i]);
+      }
+    }
+  }
+
+  filterWithStoreName(query: String) {
+    this.pageIndex = 0;
+    this.allMerchants = [];
+    for (var i = 0; i < this.allMerchantsTemp.length; i++) {
+      if (
+        this.allMerchantsTemp[i].storeName
+          .toLowerCase()
+          .includes(query.toLowerCase())
+      ) {
         this.allMerchants.push(this.allMerchantsTemp[i]);
       }
     }

@@ -43,12 +43,36 @@ export class UserService {
     console.log(response);
   }
 
-  filter(query: String) {
+  filterWithName(query: String) {
     this.pageIndex = 0;
     this.allUsers = [];
     for (var i = 0; i < this.allUsersTemp.length; i++) {
       if (
         this.allUsersTemp[i].name.toLowerCase().includes(query.toLowerCase())
+      ) {
+        this.allUsers.push(this.allUsersTemp[i]);
+      }
+    }
+  }
+
+  filterWithNumber(query: String) {
+    this.pageIndex = 0;
+    this.allUsers = [];
+    for (var i = 0; i < this.allUsersTemp.length; i++) {
+      if (
+        this.allUsersTemp[i].number.toLowerCase().includes(query.toLowerCase())
+      ) {
+        this.allUsers.push(this.allUsersTemp[i]);
+      }
+    }
+  }
+
+  filterWithEmail(query: String) {
+    this.pageIndex = 0;
+    this.allUsers = [];
+    for (var i = 0; i < this.allUsersTemp.length; i++) {
+      if (
+        this.allUsersTemp[i].email.toLowerCase().includes(query.toLowerCase())
       ) {
         this.allUsers.push(this.allUsersTemp[i]);
       }
