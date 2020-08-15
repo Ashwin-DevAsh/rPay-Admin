@@ -49,6 +49,8 @@ export class TransactionsService {
         frommetadata: this.allTransactions[i].frommetadata,
         tometadata: this.allTransactions[i].tometadata,
         transactiontime: this.allTransactions[i].transactiontime,
+        isGenerated: this.allTransactions[i].isgenerated,
+        isWithdraw: this.allTransactions[i].iswithdraw,
       });
     }
     return this.transactions;
@@ -69,6 +71,8 @@ export class TransactionsService {
         frommetadata: this.allTransactions[i].frommetadata,
         tometadata: this.allTransactions[i].tometadata,
         transactiontime: this.allTransactions[i].transactiontime,
+        isGenerated: this.allTransactions[i].isgenerated,
+        isWithdraw: this.allTransactions[i].iswithdraw,
       });
     }
     return this.transactions;

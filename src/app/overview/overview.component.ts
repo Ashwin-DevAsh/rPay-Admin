@@ -44,10 +44,16 @@ export class OverviewComponent implements OnInit {
       this.createGraph();
       this.overviewService.loadMainList();
     });
+
+    this.overviewService.getWithdrawStats().then(() => {
+      this.isLoading.push(true);
+      this.createGraph();
+      this.overviewService.loadMainList();
+    });
   }
 
   createGraph() {
-    if (this.isLoading.length == 3) {
+    if (this.isLoading.length == 4) {
       this.updateMainGraph();
       this.updatePaymentGraph();
       this.updateCashChart();
@@ -125,7 +131,7 @@ export class OverviewComponent implements OnInit {
       '<canvas id="mainGraph" width="200" height="55"><canvas>';
 
     var mainChart = document.getElementById('mainGraph');
-    if (this.isLoading.length == 3)
+    if (this.isLoading.length == 4)
       this.createMainChart(
         mainChart,
         this.overviewService.mainList[this.overviewService.graphMode][

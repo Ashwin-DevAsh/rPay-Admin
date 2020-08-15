@@ -70,6 +70,30 @@ export class OverviewService {
     console.log(response);
   }
 
+  async getWithdrawStats() {
+    var response;
+    try {
+      response = await axios.get(
+        this.loginService.url + `getWithdrawStats/${this.getDays()}`,
+        {
+          headers: { token: this.loginService.token },
+        }
+      );
+      console.log(response);
+      var day: Array<any> = response.data.day.rows;
+      var hour: Array<any> = response.data.hour.rows;
+      var week: Array<any> = response.data.week.rows;
+      var month: Array<any> = response.data.month.rows;
+
+      console.log(day);
+      this.withdraw.response = response.data;
+      this.addToList(this.withdraw, [day, week, month, hour]);
+    } catch (e) {
+      response = { data: { err: e } };
+    }
+    console.log(response);
+  }
+
   async getNoTransactionStats() {
     var response;
     try {

@@ -191,9 +191,9 @@ $primarycolorGradient: #0779e4;
     opacity: 1;
     display: flex;
     align-items: center;
-    color: red;
+    color: blue;
     border-radius: 20px;
-    background-color: rgba($color: red, $alpha: 0.1);
+    background-color: rgba($color: blue, $alpha: 0.1);
     h4 {
       padding: 5px 5px;
       margin: auto;
@@ -317,7 +317,7 @@ $primarycolorGradient: #0779e4;
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
   .transactions-table {
     border-top: solid 0.1px rgba($color: #000000, $alpha: 0.1);
     display: grid;
@@ -338,7 +338,7 @@ $primarycolorGradient: #0779e4;
     }
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .transactions-table {
     display: flex;
     .transaction {

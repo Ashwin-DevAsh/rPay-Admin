@@ -344,6 +344,11 @@ $primarycolorGradient: #0779e4;
       background-color: rgba($color: rgb(135, 135, 6), $alpha: 0.1);
       color: rgb(135, 135, 6);
     }
+
+    .withdraw {
+      background-color: rgba($color: purple, $alpha: 0.1);
+      color: purple;
+    }
   }
 }
 

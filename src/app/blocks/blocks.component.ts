@@ -7,7 +7,7 @@ import { BlockService } from './BlockService';
   styleUrls: ['./blocks.component.scss'],
 })
 export class BlocksComponent implements OnInit {
-  constructor(private blockService: BlockService) {}
+  constructor(public blockService: BlockService) {}
 
   isLoading = true;
   blocks = [];

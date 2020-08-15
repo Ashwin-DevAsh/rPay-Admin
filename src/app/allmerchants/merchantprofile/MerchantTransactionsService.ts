@@ -68,7 +68,7 @@ export class MerchantTransactionService {
             : this.allTransactions[i].frommetadata.Name,
         amount:
           this.merchantService.selectedMerchant.id ==
-          this.allTransactions[i].fromid
+          this.allTransactions[i].frommetadata.Id
             ? '-' + this.allTransactions[i].amount + '.00'
             : '+' + this.allTransactions[i].amount + '.00',
         number:
@@ -81,6 +81,7 @@ export class MerchantTransactionService {
           this.merchantService.selectedMerchant.id ==
           this.allTransactions[i].frommetadata.Id,
         isGenerated: this.allTransactions[i].isgenerated,
+        isWithdraw: this.allTransactions[i].iswithdraw,
         transactionid: this.allTransactions[i].transactionid,
       });
     }

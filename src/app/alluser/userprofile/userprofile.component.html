@@ -106,7 +106,8 @@
               amount: true,
               send: item.isSend,
               received: !item.isSend,
-              generated: item.isGenerated
+              generated: item.isGenerated,
+              withdraw: item.isWithdraw
             }"
           >
             <h3>
@@ -181,7 +182,9 @@
             <h5>
               {{
                 transactions[selectedTransaction].isSend
-                  ? "Paid to"
+                  ? transactions[selectedTransaction].isWithdraw
+                    ? "Withdraw to"
+                    : "Paid to"
                   : transactions[selectedTransaction].isGenerated
                   ? "Added from"
                   : "Received from"
@@ -196,7 +199,9 @@
             <h4>
               {{
                 transactions[selectedTransaction].isSend
-                  ? "Paid Successfully !"
+                  ? transactions[selectedTransaction].isWithdraw
+                    ? "Withdraw Successfully !"
+                    : "Paid Successfully !"
                   : transactions[selectedTransaction].isGenerated
                   ? "Added Successfully !"
                   : "Received Successfully !"

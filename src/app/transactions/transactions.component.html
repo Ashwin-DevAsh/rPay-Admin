@@ -37,12 +37,6 @@
           </div>
           <input #query [placeholder]="searchMode" type="text" />
         </div>
-        <!-- <div class="search-inputs">
-          <input placeholder="From" type="text" />
-        </div>
-        <div class="search-inputs">
-          <input placeholder="To" type="text" />
-        </div> -->
       </div>
       <div class="header-buttons">
         <button (click)="filter(query.value)">Search</button>
@@ -55,7 +49,7 @@
     <div class="transactions-table">
       <div class="transactions-heading transaction">
         <div>
-          <h4>Transaction ID</h4>
+          <h4>ID</h4>
         </div>
         <div>
           <h4>Amount</h4>
@@ -68,6 +62,9 @@
         </div>
         <div>
           <h4>Created At</h4>
+        </div>
+        <div>
+          <h4>Type</h4>
         </div>
       </div>
       <div
@@ -94,6 +91,17 @@
           </div>
           <div>
             <h4>{{ item.transactiontime }}</h4>
+          </div>
+          <div>
+            <h4>
+              {{
+                item.isWithdraw
+                  ? "Withdraw"
+                  : item.isGenerated
+                  ? "Generated"
+                  : "Transaction"
+              }}
+            </h4>
           </div>
         </div>
         <div #moreInfo class="more-info">

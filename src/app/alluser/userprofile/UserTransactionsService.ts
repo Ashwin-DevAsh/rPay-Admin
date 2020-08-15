@@ -50,10 +50,6 @@ export class UserTransactionsService {
   }
 
   getNext(isMove = false): Array<any> {
-    console.log(
-      'qrcode = ',
-      new JwtHelperService().decodeToken(this.userService.selectedUser.qrCode)
-    );
     this.transactions = [];
     for (var i = this.allTransactions.length - 1; i >= 0; i--) {
       this.transactions.push({
@@ -64,7 +60,8 @@ export class UserTransactionsService {
             ? this.allTransactions[i].tometadata.Name
             : this.allTransactions[i].frommetadata.Name,
         amount:
-          this.userService.selectedUser.id == this.allTransactions[i].fromid
+          this.userService.selectedUser.id ==
+          this.allTransactions[i].frommetadata.Id
             ? '-' + this.allTransactions[i].amount + '.00'
             : '+' + this.allTransactions[i].amount + '.00',
         number:
@@ -77,6 +74,7 @@ export class UserTransactionsService {
           this.userService.selectedUser.id ==
           this.allTransactions[i].frommetadata.Id,
         isGenerated: this.allTransactions[i].isgenerated,
+        isWithdraw: this.allTransactions[i].iswithdraw,
         transactionid: this.allTransactions[i].transactionid,
       });
     }

@@ -80,7 +80,7 @@
             newUser: item.type == 'New User',
             amountGenerated: item.type == 'Amount Generated',
             transactions: item.type == 'Transaction',
-            withdraw: item.type == 'withdraw'
+            withdraw: item.type == 'Withdraw'
           }"
         >
           <h4>{{ item.type }}</h4>
@@ -107,9 +107,9 @@
         <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li
-              (click)="('nav(false)')"
+              (click)="nav(false)"
               class="page-item"
-              *ngIf="'merchants[0].index != 1'"
+              *ngIf="blocks[0].index != 1"
             >
               <a
                 class="page-link"
@@ -120,7 +120,13 @@
                 <span class="sr-only">Previous</span>
               </a>
             </li>
-            <li (click)="('nav()')" class="page-item" *ngIf="true">
+            <li
+              (click)="nav()"
+              class="page-item"
+              *ngIf="
+                blocks[blocks.length - 1].index != blockService.allBlocks.length
+              "
+            >
               <a class="page-link" style="cursor: pointer;" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
