@@ -10,9 +10,6 @@ import { BlocksComponent } from './blocks/blocks.component';
 import { AlluserComponent } from './alluser/alluser.component';
 import { AllmerchantsComponent } from './allmerchants/allmerchants.component';
 import { AlladminsComponent } from './alladmins/alladmins.component';
-import { AdduserComponent } from './adduser/adduser.component';
-import { AddmerchantsComponent } from './addmerchants/addmerchants.component';
-import { AddadminsComponent } from './addadmins/addadmins.component';
 import { MyaccountComponent } from './myaccount/myaccount.component';
 import { ListusersComponent } from './alluser/listusers/listusers.component';
 import { ListmerchantsComponent } from './allmerchants/listmerchants/listmerchants.component';
@@ -55,9 +52,6 @@ const routes: Routes = [
           { path: '**', redirectTo: 'ListAdmins' },
         ],
       },
-      { path: 'AddUsers', component: AdduserComponent },
-      { path: 'AddMerchants', component: AddmerchantsComponent },
-      { path: 'AddAdmins', component: AddadminsComponent },
       { path: 'MyAccount', component: MyaccountComponent },
       {
         path: '**',

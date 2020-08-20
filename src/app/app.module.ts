@@ -10,9 +10,6 @@ import { OverviewComponent } from './overview/overview.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { NodesComponent } from './nodes/nodes.component';
 import { BlocksComponent } from './blocks/blocks.component';
-import { AdduserComponent } from './adduser/adduser.component';
-import { AddmerchantsComponent } from './addmerchants/addmerchants.component';
-import { AddadminsComponent } from './addadmins/addadmins.component';
 import { AlladminsComponent } from './alladmins/alladmins.component';
 import { AllmerchantsComponent } from './allmerchants/allmerchants.component';
 import { AlluserComponent } from './alluser/alluser.component';
@@ -32,9 +29,6 @@ import { ListadminsComponent } from './alladmins/listadmins/listadmins.component
     TransactionsComponent,
     NodesComponent,
     BlocksComponent,
-    AdduserComponent,
-    AddmerchantsComponent,
-    AddadminsComponent,
     AlladminsComponent,
     AllmerchantsComponent,
     AlluserComponent,

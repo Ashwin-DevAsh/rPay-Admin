@@ -32,6 +32,7 @@ export class BlocksComponent implements OnInit {
   }
 
   nav(next = true) {
+    this.isLoading = true;
     if (next) {
       this.blocks = this.blockService.getNext(true);
     } else {

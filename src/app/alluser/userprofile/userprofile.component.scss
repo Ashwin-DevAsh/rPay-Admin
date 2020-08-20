@@ -293,6 +293,7 @@ $primarycolorGradient: #0779e4;
       img {
         position: absolute;
         height: 47px;
+        object-fit: cover;
         border-radius: 50%;
         width: 47px;
       }
@@ -418,6 +419,7 @@ $primarycolorGradient: #0779e4;
     justify-content: center;
     align-items: center;
     img {
+      object-fit: cover;
       position: absolute;
       height: 52px;
       border-radius: 26px;

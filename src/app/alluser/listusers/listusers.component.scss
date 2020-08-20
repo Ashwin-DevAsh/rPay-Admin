@@ -169,7 +169,6 @@ $primarycolorGradient: #0779e4;
     }
     .avatar-container {
       height: 60px;
-
       width: 100%;
       position: relative;
       top: 0;
@@ -194,6 +193,7 @@ $primarycolorGradient: #0779e4;
 
       img {
         position: absolute;
+        object-fit: cover;
         height: 52px;
         border-radius: 26px;
         width: 52px;

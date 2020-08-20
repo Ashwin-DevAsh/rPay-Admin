@@ -7,11 +7,40 @@
     </div>
 
     <div class="right">
-      <div class="user-container">
+      <div
+        (click)="profileCard.classList.toggle('profile-card-open')"
+        class="user-container"
+      >
+        <img src="../../assets/profile.svg" alt="" />
+
         <h3>
           {{ userName }}
         </h3>
-        <img src="../../assets/profile.svg" alt="" />
+      </div>
+    </div>
+    <div #profileCard class="profile-card">
+      <div class="profile-heading">
+        <img src="../../assets/RLogo (5).png" />
+        <div>
+          <h4>{{ loginService.userName }}</h4>
+          <h6>radmin@9551574355</h6>
+        </div>
+      </div>
+      <div class="info">
+        <div class="listtile">
+          <img src="../../assets/phone.svg" />
+          <h6>+919552574355</h6>
+        </div>
+        <div class="listtile">
+          <img src="../../assets/mail.svg" />
+          <h6>{{ loginService.email }}</h6>
+        </div>
+        <div class="divider"></div>
+
+        <div (click)="logout()" class="listtile" style="margin-bottom: 12px;">
+          <img src="../../assets/power.svg" />
+          <h6>Logout</h6>
+        </div>
       </div>
     </div>
   </nav>
@@ -89,40 +118,6 @@
         <img src="../../assets/admin.svg" alt="" />
         <h4>Admins</h4>
       </div>
-
-      <div class="divider"></div>
-
-      <!-- <div
-        [ngClass]="{ options: true, selected: isCurrentPage('AddUsers') }"
-        (click)="selectPage('AddUsers')"
-      >
-        <img src="../../assets/addUsers.svg" alt="" />
-        <h4>Add Users</h4>
-      </div> -->
-
-      <div
-        [ngClass]="{ options: true, selected: isCurrentPage('AddMerchants') }"
-        (click)="selectPage('AddMerchants')"
-      >
-        <img src="../../assets/notifications.svg" alt="" />
-        <h4>Notifications</h4>
-      </div>
-
-      <div
-        [ngClass]="{ options: true, selected: isCurrentPage('AddUsers') }"
-        (click)="selectPage('AddUsers')"
-      >
-        <img src="../../assets/withdraw1.svg" alt="" />
-        <h4>Withdarw</h4>
-      </div>
-      <!-- 
-      <div
-        [ngClass]="{ options: true, selected: isCurrentPage('AddAdmins') }"
-        (click)="selectPage('AddAdmins')"
-      >
-        <img src="../../assets/addUsers.svg" alt="" />
-        <h4>Add Admins</h4>
-      </div> -->
       <div class="divider"></div>
 
       <div

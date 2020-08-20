@@ -132,7 +132,7 @@ $primarycolorGradient: #0779e4;
     display: grid;
     width: 100%;
     cursor: pointer;
-    grid-template-columns: 20% 15% 35% 20% 10%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
     h4 {
       font-weight: 500;
       opacity: 0.8;
@@ -260,11 +260,12 @@ $primarycolorGradient: #0779e4;
     }
 
     .dropdown-item {
-      height: 30px;
+      padding-left: 20px;
+      height: 40px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      justify-content: center;
+      justify-content: start;
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
@@ -369,14 +370,20 @@ $primarycolorGradient: #0779e4;
 
   .input-field {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
     margin: 0 40px 0 40px;
+
+    .showError {
+      background-color: rgba(250, 173, 173, 0.5);
+    }
   }
 
   input {
     border-radius: 5px;
     border: none;
+    width: 70%;
     border: solid 0.1px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease;
     height: 45px;
