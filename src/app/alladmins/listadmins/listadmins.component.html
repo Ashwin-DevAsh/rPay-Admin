@@ -31,12 +31,16 @@
               </div>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <div class="dropdown-item">
-                {{ "Number" }}
+              <div
+                (click)="searchMode = item"
+                class="dropdown-item"
+                *ngFor="let item of searchModes"
+              >
+                {{ item }}
               </div>
             </div>
           </div>
-          <input #query placeholder="Number" type="text" />
+          <input #query [placeholder]="searchMode" type="text" />
         </div>
         <!-- <div class="search-inputs">
           <input placeholder="From" type="text" />
@@ -46,7 +50,7 @@
         </div> -->
       </div>
       <div>
-        <button style="margin-right: 20px;" (click)="('filter(query.value)')">
+        <button style="margin-right: 20px;" (click)="filter(query.value)">
           Search
         </button>
         <button style="background-color: red;" (click)="addAdmin = true">
