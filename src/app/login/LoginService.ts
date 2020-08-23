@@ -7,8 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class LoginService {
   constructor() {}
 
-  public url: String =
-    'http://ec2-3-129-62-82.us-east-2.compute.amazonaws.com:4500/';
+  public url: String = 'http://139.59.23.88:4500/';
   public endPoint: String = 'login';
   public userName: String = localStorage.getItem('userName');
   public email: String = localStorage.getItem('email');

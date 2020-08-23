@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
             if (res.data.message === 'done') {
               this.loginService.userName = res.data.name;
               this.loginService.email = res.data.email;
-              this.loginService.phoneNumber = res.data.numer;
+              this.loginService.phoneNumber = '+' + res.data.number;
               this.loginService.imageURL = res.data.imageURL;
               this.loginService.token = res.data.token;
               localStorage.setItem('userName', res.data.name);
               localStorage.setItem('email', res.data.email);
-              localStorage.setItem('phoneNumber', res.data.numer);
+              localStorage.setItem('phoneNumber', res.data.number);
               localStorage.setItem('url', res.data.imageURL);
               localStorage.setItem('token', res.data.token);
               this.isLoading = false;
