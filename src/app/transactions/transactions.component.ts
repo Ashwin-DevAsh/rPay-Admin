@@ -84,12 +84,42 @@ export class TransactionsComponent implements OnInit {
 
   download() {
     this.isLoading = true;
+    var csvData = [];
+    for (
+      var i = this.transactionService.allTransactions.length - 1;
+      i >= 0;
+      i--
+    ) {
+      csvData.push({
+        id: this.transactionService.allTransactions[i].transactionid,
+        time: this.transactionService.allTransactions[i].transactiontime,
+        amount: this.transactionService.allTransactions[i].amount,
+
+        fromName: this.transactionService.allTransactions[i].frommetadata.Name,
+        fromNumber: this.transactionService.allTransactions[i].frommetadata
+          .Number,
+        fromEmail: this.transactionService.allTransactions[i].frommetadata
+          .Email,
+        fromID: this.transactionService.allTransactions[i].frommetadata.Id,
+
+        toName: this.transactionService.allTransactions[i].tometadata.Name,
+        toNumber: this.transactionService.allTransactions[i].tometadata.Number,
+        toEmail: this.transactionService.allTransactions[i].tometadata.Email,
+        toID: this.transactionService.allTransactions[i].tometadata.Id,
+
+        type: this.transactionService.allTransactions[i].isgenerated
+          ? 'Generated'
+          : this.transactionService.allTransactions[i].iswithdraw
+          ? 'Withdraw'
+          : 'Transaction',
+      });
+    }
     const options = {
       title: 'rpay-transactions',
       useKeysAsHeaders: true,
     };
     const csvExporter = new ExportToCsv(options);
-    csvExporter.generateCsv(this.transactionService.allTransactions);
+    csvExporter.generateCsv(csvData);
     this.isLoading = false;
   }
 }
