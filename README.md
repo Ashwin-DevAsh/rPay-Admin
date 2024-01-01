@@ -50,25 +50,11 @@ npm install
 ```bash
 ng serve
 ```
-
 ## Tech Stack
-
-- **Angular:**
-  <p align="center">
-    <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="100" alt="Angular Logo"/>
-  </p>
-
-- **SCSS:**
-  <p align="center">
-    <img src="https://sass-lang.com/assets/img/styleguide/color-1c4aab2b.png" width="100" alt="SCSS Logo"/>
-  </p>
-
-- **Docker:**
-  <p align="center">
-    <img src="https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png" width="100" alt="Docker Logo"/>
-  </p>
-
-- **Nginx:**
-  <p align="center">
-    <img src="https://www.nginx.com/wp-content/uploads/2018/08/NGINX-logo-rgb-large.png" width="100" alt="Nginx Logo"/>
-  </p>
+<p align="center">
+  <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="100" alt="Angular Logo"/>
+  <img src="https://sass-lang.com/assets/img/styleguide/color-1c4aab2b.png" width="100" alt="SCSS Logo"/>
+  <img src="https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png" width="100" alt="Docker Logo"/>
+  <!-- You may need to update the URLs or use alternative sources for the SCSS and Docker logos -->
+  <!-- For example, the Docker logo source might be: https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png -->
+</p>
