@@ -59,3 +59,5 @@ ng serve
   <!-- You may need to update the URLs or use alternative sources for the SCSS and Docker logos -->
   <!-- For example, the Docker logo source might be: https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png -->
 </p>
+## Dependency Repositories
+- [rPay-Backend](https://github.com/Ashwin-DevAsh/rPay-Backend): Microservice handling backend functionality.
