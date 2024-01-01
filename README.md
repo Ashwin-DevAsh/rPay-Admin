@@ -32,3 +32,21 @@ rPay-Admin is a web application developed in Angular. This application serves as
 - Log in to the application using your admin credentials.
 - Explore the dashboard to view transaction details and logs.
 - Utilize the search and filter features for efficient data analysis.
+
+## Installation
+
+2. Clone the repository:
+```bash
+git https://github.com/Ashwin-DevAsh/rPay-Admin
+cd rPay-Admin
+```
+
+3. Install Dependencies
+```bash
+npm install
+```
+
+4. Run the Application
+```bash
+ng serve
+```
