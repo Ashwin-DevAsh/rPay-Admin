@@ -50,6 +50,7 @@ npm install
 ```bash
 ng serve
 ```
+
 ## Tech Stack
 <p align="left">
   <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="100" alt="Angular Logo"/>
@@ -59,5 +60,6 @@ ng serve
   <!-- You may need to update the URLs or use alternative sources for the SCSS and Docker logos -->
   <!-- For example, the Docker logo source might be: https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png -->
 </p>
+
 ## Dependency Repositories
 - [rPay-Backend](https://github.com/Ashwin-DevAsh/rPay-Backend): Microservice handling backend functionality.
