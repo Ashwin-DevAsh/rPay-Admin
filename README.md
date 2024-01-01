@@ -16,6 +16,16 @@ rPay-Admin is a web application developed in Angular. This application serves as
 - **Home Page Insights:**
   - The home page features interactive charts to provide valuable insights into transaction trends.
   - Gain a comprehensive overview of transaction statistics and patterns.
+ 
+## Screenshots
+  <p align="left">
+    <img src="https://i.postimg.cc/8Cn8hTv3/Screenshot-2024-01-01-124906.png" width="200" alt="Screenshot 1"/>
+    <img src="https://i.postimg.cc/jd6GMHNy/Screenshot-2024-01-01-124723.png" width="200" alt="Screenshot 2"/>
+    <img src="https://i.postimg.cc/28Nsdcqz/Screenshot-2024-01-01-124733.png" width="200" alt="Screenshot 3"/>
+    <img src="https://i.postimg.cc/x8MWDHZD/Screenshot-2024-01-01-124803.png" width="200" alt="Screenshot 4"/>
+    <img src="https://i.postimg.cc/3RPPc9nF/Screenshot-2024-01-01-124811.png" width="200" alt="Screenshot 5"/>
+    <img src="https://i.postimg.cc/bYnXtcwC/Screenshot-2024-01-01-124822.png" width="200" alt="Screenshot 6"/>
+  </p>
 
 ## Usage
 
