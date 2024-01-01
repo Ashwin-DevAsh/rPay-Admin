@@ -55,7 +55,7 @@ ng serve
   <img src="https://angular.io/assets/images/logos/angular/angular.svg" width="100" alt="Angular Logo"/>
   <img src="https://i.postimg.cc/mDBw258r/free-sass-226054.png" width="100" alt="SCSS Logo"/>
   <img src="https://i.postimg.cc/VvTZ6FJH/Docker-Logo.png" width="100" alt="Docker Logo"/>
-   <img src="https://www.nginx.com/wp-content/uploads/2018/08/NGINX-logo-rgb-large.png" width="100" alt="Nginx Logo"/>
+   <img src="https://i.postimg.cc/kG0rZCv4/nginx.png" width="100" alt="Nginx Logo"/>
   <!-- You may need to update the URLs or use alternative sources for the SCSS and Docker logos -->
   <!-- For example, the Docker logo source might be: https://www.docker.com/sites/default/files/d8/2019-07/Moby-logo.png -->
 </p>
