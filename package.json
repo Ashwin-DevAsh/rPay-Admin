@@ -23,7 +23,7 @@
     "@angular/router": "~10.0.4",
     "@auth0/angular-jwt": "^5.0.1",
     "angularx-qrcode": "^2.3.5",
-    "axios": "^0.19.2",
+    "axios": "^0.28.0",
     "bcryptjs": "^2.4.3",
     "chart.js": "^2.9.3",
     "export-to-csv": "^0.2.1",
