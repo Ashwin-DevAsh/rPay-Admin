@@ -19,12 +19,12 @@ rPay-Admin is a web application developed in Angular. This application serves as
  
 ## Screenshots
   <p align="left">
-    <img src="https://i.postimg.cc/8Cn8hTv3/Screenshot-2024-01-01-124906.png" width="400" alt="Screenshot 1"/>
-    <img src="https://i.postimg.cc/jd6GMHNy/Screenshot-2024-01-01-124723.png" width="400" alt="Screenshot 2"/>
-    <img src="https://i.postimg.cc/28Nsdcqz/Screenshot-2024-01-01-124733.png" width="400" alt="Screenshot 3"/>
-    <img src="https://i.postimg.cc/x8MWDHZD/Screenshot-2024-01-01-124803.png" width="400" alt="Screenshot 4"/>
-    <img src="https://i.postimg.cc/3RPPc9nF/Screenshot-2024-01-01-124811.png" width="400" alt="Screenshot 5"/>
-    <img src="https://i.postimg.cc/bYnXtcwC/Screenshot-2024-01-01-124822.png" width="400" alt="Screenshot 6"/>
+    <img src="https://i.postimg.cc/SNVwhnv0/admin6.png" width="400" alt="Screenshot 1"/>
+    <img src="https://i.postimg.cc/g2ZqK5RM/admin1.png" width="400" alt="Screenshot 2"/>
+    <img src="https://i.postimg.cc/G2qk21wp/admin2.png" width="400" alt="Screenshot 3"/>
+    <img src="https://i.postimg.cc/fyyYSgDf/admin3.png" width="400" alt="Screenshot 4"/>
+    <img src="https://i.postimg.cc/zfYw2jFq/admin5.png" width="400" alt="Screenshot 5"/>
+    <img src="https://i.postimg.cc/RFM74ZY8/admin4.png" width="400" alt="Screenshot 6"/>
   </p>
 
 ## Usage
